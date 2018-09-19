@@ -80,8 +80,17 @@ export default class Donate extends React.Component {
                                         </button>
 									</small>
 								</div>
+								<div className="form-group">
+									<label for="honoreeEmail">Honoree's email</label>
+									<input type="email" className="form-control" id="honoreeEmail" placeholder="" />
+								</div>
 							</div>
 						</div>
+						<div className="donate-button-group">
+							<button className="btn btn-primary donate-using-cc">Use credit card</button>
+							<button className="btn btn-primary">Use Paypal</button>
+						</div>
+						<p className="disclaimer">By donating, you agree to our terms of service and privacy policy.</p>
 					</form>
 				</div>
 			</div>
