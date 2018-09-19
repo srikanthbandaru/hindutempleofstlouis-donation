@@ -76,8 +76,8 @@ export default class Donate extends React.Component {
 									<input type="text" className="form-control" id="honoreeName" placeholder="" />
 									<small id="emailHelp" className="form-text text-muted">
 										<button className="btn btn-link p-0" onClick={this.toggleHonoreeFields}>
-                                            Never mind — this gift isn't in honor of another person
-                                        </button>
+											Never mind — this gift isn't in honor of another person
+										</button>
 									</small>
 								</div>
 								<div className="form-group">

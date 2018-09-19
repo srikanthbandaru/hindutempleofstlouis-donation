@@ -3,19 +3,19 @@
 }
 
 .donate-button-group {
-    margin-top: 28px;
-    display: -webkit-flex;
+	margin-top: 28px;
+	display: -webkit-flex;
 }
 
 .donate-button-group > .btn {
-    font-weight: 700;
-    flex-basis: 100%;
+	font-weight: 700;
+	flex-basis: 100%;
 }
 
 .donate-using-cc {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 .disclaimer {
-    margin-top: 12px;
+	margin-top: 12px;
 }
