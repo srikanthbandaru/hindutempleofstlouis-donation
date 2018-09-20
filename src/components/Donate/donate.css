@@ -20,19 +20,19 @@
 	margin-top: 12px;
 }
 
-input[type=radio] {
-    -webkit-box-sizing: border-box;
-    /* appearance: none; */
-    border-radius: 50%;
-    top: -3px;
-    width: 20px;
-    height: 20px;
-    content: '';
-    border: 1px solid #3e97eb;
+input[type='radio'] {
+	-webkit-box-sizing: border-box;
+	/* appearance: none; */
+	border-radius: 50%;
+	top: -3px;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #3e97eb;
 }
 
 .temple-logo {
-    max-height: 220px;
+	max-height: 220px;
 }
 
 /* input[type=radio]:after {
@@ -49,12 +49,13 @@ input[type=radio]:focus {
 } */
 
 .form-check-label {
-    margin-bottom: 0;
-    margin-left: 8px;
-    margin-right: 28px;
-    font-weight: 500;
+	margin-bottom: 0;
+	margin-left: 8px;
+	margin-right: 28px;
+	font-weight: 500;
 }
 
-.form-group > label, legend {
-    font-weight: 700;
+.form-group > label,
+legend {
+	font-weight: 700;
 }
