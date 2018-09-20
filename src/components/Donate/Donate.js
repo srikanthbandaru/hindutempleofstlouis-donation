@@ -31,7 +31,7 @@ export default class Donate extends React.Component {
 					</p>
 				</div>
 				<div className="col-md-6 px-3">
-					<form>
+					<form className="mt-1">
 						<div className="form-group frequency">
 							<legend className="col-form-label pt-0">Select your support</legend>
 							<div className="form-check">

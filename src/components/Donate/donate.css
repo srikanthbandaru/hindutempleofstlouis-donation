@@ -52,4 +52,9 @@ input[type=radio]:focus {
     margin-bottom: 0;
     margin-left: 8px;
     margin-right: 28px;
+    font-weight: 500;
+}
+
+.form-group > label, legend {
+    font-weight: 700;
 }
