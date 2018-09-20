@@ -18,8 +18,8 @@ export default class Donate extends React.Component {
 
 		return (
 			<div className="row my-5">
-				<div className="col-md-2 px-3 d-sm-none d-lg-block">
-					<img src={templeVector} className="img-fluid" />
+				<div className="col-md-2 px-3 d-md-none d-lg-block">
+					<img src={templeVector} className="img-fluid temple-logo mx-auto my-3 d-block" alt="logo" />
 				</div>
 				<div className="col-md-4 px-3">
 					<h1>Help us do more</h1>
@@ -32,7 +32,7 @@ export default class Donate extends React.Component {
 				</div>
 				<div className="col-md-6 px-3">
 					<form>
-						<div className="frequency">
+						<div className="form-group frequency">
 							<legend className="col-form-label pt-0">Select your support</legend>
 							<div className="form-check">
 								<input
