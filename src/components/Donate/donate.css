@@ -1,0 +1,61 @@
+.frequency > .form-check {
+	display: inline-block;
+}
+
+.donate-button-group {
+	margin-top: 28px;
+	display: -webkit-flex;
+}
+
+.donate-button-group > .btn {
+	font-weight: 700;
+	flex-basis: 100%;
+}
+
+.donate-using-cc {
+	margin-right: 20px;
+}
+
+.disclaimer {
+	margin-top: 12px;
+}
+
+input[type='radio'] {
+	-webkit-box-sizing: border-box;
+	/* appearance: none; */
+	border-radius: 50%;
+	top: -3px;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #3e97eb;
+}
+
+.temple-logo {
+	max-height: 220px;
+}
+
+/* input[type=radio]:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3e97eb;
+}
+
+input[type=radio]:focus {
+    border-radius: 50%;
+} */
+
+.form-check-label {
+	margin-bottom: 0;
+	margin-left: 8px;
+	margin-right: 28px;
+	font-weight: 500;
+}
+
+.form-group > label,
+legend {
+	font-weight: 700;
+}
