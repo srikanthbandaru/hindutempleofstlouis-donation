@@ -89,7 +89,7 @@ class CheckoutForm extends React.Component {
 							: "Never mind — this gift isn't in honor of another person"}
 					</button>
 					<div className={this.props.honoreeFieldsClassName}>
-						<div className="honoree-details">
+						<div className="honoree-details my-2">
 							<div className="form-group">
 								<label for="honoreeName">Honoree's name</label>
 								<input type="text" className="form-control" id="honoreeName" placeholder="" />
@@ -97,6 +97,7 @@ class CheckoutForm extends React.Component {
 							<div className="form-group">
 								<label for="honoreeEmail">Honoree's email</label>
 								<input type="email" className="form-control" id="honoreeEmail" placeholder="" />
+                                <small>We will notify your honoree of your gift</small>
 							</div>
 						</div>
 					</div>
