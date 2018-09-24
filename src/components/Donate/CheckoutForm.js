@@ -20,9 +20,16 @@ class CheckoutForm extends React.Component {
 		});
 	};
 
+	handleSubmit = event => {
+		event.preventDefault();
+		this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+			console.log('Received Stripe token:', token);
+		});
+	}
+
 	render() {
 		const cardElement = (
-			<form>
+			<form onSubmit={this.handleSubmit}>
 				<label>
 					Card number
 					<CardNumberElement />
