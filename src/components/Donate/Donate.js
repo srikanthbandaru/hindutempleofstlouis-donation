@@ -41,6 +41,7 @@ export default class Donate extends React.Component {
 								shouldShowHonoreeFields={this.state.shouldShowHonoreeFields}
 							/>
 						</Elements>
+						<p className="disclaimer">By donating, you agree to our terms of service and privacy policy.</p>
 					</div>
 				</div>
 			</StripeProvider>

@@ -22,10 +22,10 @@ class CheckoutForm extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+		this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
 			console.log('Received Stripe token:', token);
 		});
-	}
+	};
 
 	render() {
 		const cardElement = (
@@ -57,10 +57,11 @@ class CheckoutForm extends React.Component {
 					<Modal modalBody={cardElement} subTitle="Donation" handleClose={this.toggleStripeCheckoutModal} />
 				)}
 
-				<form className="mt-1">
+				<form className="mt-1" id="donate-form">
 					<div className="form-group frequency">
-						<legend className="col-form-label pt-0">Select your support</legend>
+						<label className="col-form-label pt-0">Select your support</label>
 						<div className="form-check">
+							<label for="gridRadios1">Monthly</label>
 							<input
 								className="form-check-input"
 								type="radio"
@@ -69,11 +70,9 @@ class CheckoutForm extends React.Component {
 								value="option1"
 								checked
 							/>
-							<label className="form-check-label" for="gridRadios1">
-								Monthly
-							</label>
 						</div>
 						<div className="form-check">
+							<label for="gridRadios2">One time</label>
 							<input
 								className="form-check-input"
 								type="radio"
@@ -81,9 +80,6 @@ class CheckoutForm extends React.Component {
 								id="gridRadios2"
 								value="option2"
 							/>
-							<label className="form-check-label" for="gridRadios2">
-								One time
-							</label>
 						</div>
 					</div>
 					<div className="form-group">
@@ -104,7 +100,7 @@ class CheckoutForm extends React.Component {
 							<div className="form-group">
 								<label for="honoreeEmail">Honoree's email</label>
 								<input type="email" className="form-control" id="honoreeEmail" placeholder="" />
-                                <small>We will notify your honoree of your gift</small>
+								<small>We will notify your honoree of your gift</small>
 							</div>
 						</div>
 					</div>
@@ -114,7 +110,6 @@ class CheckoutForm extends React.Component {
 						</button>
 						<button className="btn btn-primary">Use Paypal</button>
 					</div>
-					<p className="disclaimer">By donating, you agree to our terms of service and privacy policy.</p>
 				</form>
 			</React.Fragment>
 		);
