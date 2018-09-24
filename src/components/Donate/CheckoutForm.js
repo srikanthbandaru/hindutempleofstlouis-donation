@@ -83,6 +83,29 @@ class CheckoutForm extends React.Component {
 						</div>
 					</div>
 					<div className="form-group">
+						<label for="fullName">Select your amount</label>
+						<ul className="horizontal-chooser">
+							<li className="choice-amount">
+								<label>$10</label>
+							</li>
+							<li className="choice-amount">
+								<label>$35</label>
+							</li>
+							<li className="choice-amount">
+								<label>$50</label>
+							</li>
+							<li className="choice-amount">
+								<label>$100</label>
+							</li>
+							<li className="choice-amount">
+								<label>$250</label>
+							</li>
+							<li className="choice-amount">
+								<label>Other</label>
+							</li>
+						</ul>
+					</div>
+					<div className="form-group">
 						<label for="fullName">Your name</label>
 						<input type="text" className="form-control" id="fullName" placeholder="" />
 					</div>
