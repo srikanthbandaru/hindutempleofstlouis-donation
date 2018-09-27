@@ -1,4 +1,4 @@
 import Donate from './Donate';
-import './donate.css';
+import './donate.scss';
 
 export default Donate;
