@@ -78,7 +78,7 @@ class CheckoutForm extends React.Component {
 		const donationChoice = ['$10', '$35', '$50', '$100', '$250'];
 		const renderDonationChoice = amount => (
 			<li
-				className="choice-amount"
+				className={`choice-amount ${this.state.donateForm.donationAmount === amount ? 'selected' : ''}`}
 				style={{
 					width: `${100 / (donationChoice.length + 1)}%`,
 					minWidth: `${100 / (donationChoice.length + 1)}%`

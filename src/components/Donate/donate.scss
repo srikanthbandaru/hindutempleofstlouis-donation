@@ -60,6 +60,11 @@
 				width: 1px;
 			}
 		}
+		li.choice-amount.selected {
+			background: #007bff;
+			color: white;
+			border: none;
+		}
 		li.choice-amount:first-child {
 			border-top-left-radius: 4px;
 			border-bottom-left-radius: 4px;
