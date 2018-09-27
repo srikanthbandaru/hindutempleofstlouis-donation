@@ -10,7 +10,14 @@ import Modal from '../shared/Modal';
 
 class CheckoutForm extends React.Component {
 	state = {
-		shouldShowStripeCheckoutModal: false
+		shouldShowStripeCheckoutModal: false,
+		donateForm: {
+			donationFrequency: 'monthly',
+			donationAmount: '$10',
+			fullName: '',
+			honoreeName: '',
+			honoreeEmail: ''
+		}
 	};
 
 	toggleStripeCheckoutModal = event => {
@@ -20,9 +27,33 @@ class CheckoutForm extends React.Component {
 		});
 	};
 
+	handleInputChange = event => {
+		const { donateForm } = this.state;
+
+		if (!event.target.name) {
+			const name = event.target.querySelector('input').name;
+			const value = event.target.querySelector('input').value;
+
+			donateForm[name] = value;
+		} else {
+			donateForm[event.target.name] = event.target.value;
+		}
+
+		this.setState({
+			donateForm
+		});
+	};
+
+	handleSubmit = event => {
+		event.preventDefault();
+		this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
+			console.log('Received Stripe token:', token);
+		});
+	};
+
 	render() {
 		const cardElement = (
-			<form>
+			<form onSubmit={this.handleSubmit}>
 				<label>
 					Card number
 					<CardNumberElement />
@@ -44,44 +75,99 @@ class CheckoutForm extends React.Component {
 				<button>Pay</button>
 			</form>
 		);
+		const donationChoice = ['$10', '$35', '$50', '$100', '$250'];
+		const renderDonationChoice = amount => (
+			<li
+				className={`choice-amount ${this.state.donateForm.donationAmount === amount ? 'selected' : ''}`}
+				style={{
+					width: `${100 / (donationChoice.length + 1)}%`,
+					minWidth: `${100 / (donationChoice.length + 1)}%`
+				}}
+				onClick={this.handleInputChange}
+			>
+				<label>
+					{amount}
+					<input
+						className="hidden-radio"
+						type="radio"
+						name="donationAmount"
+						id="donationAmount1"
+						value={amount}
+						checked={this.state.donateForm.donationAmount === amount}
+					/>
+				</label>
+			</li>
+		);
 		return (
 			<React.Fragment>
 				{this.state.shouldShowStripeCheckoutModal && (
 					<Modal modalBody={cardElement} subTitle="Donation" handleClose={this.toggleStripeCheckoutModal} />
 				)}
 
-				<form className="mt-1">
+				<form className="mt-1" id="donate-form">
 					<div className="form-group frequency">
-						<legend className="col-form-label pt-0">Select your support</legend>
-						<div className="form-check">
-							<input
-								className="form-check-input"
-								type="radio"
-								name="gridRadios"
-								id="gridRadios1"
-								value="option1"
-								checked
-							/>
-							<label className="form-check-label" for="gridRadios1">
+						<label className="col-form-label pt-0">Select your support</label>
+						<div className="form-check" onClick={this.handleInputChange}>
+							<label htmlFor="gridRadios1">
 								Monthly
+								<input
+									className="form-check-input"
+									type="radio"
+									name="donationFrequency"
+									id="donationFrequency1"
+									value="monthly"
+									checked={this.state.donateForm.donationFrequency === 'monthly'}
+								/>
 							</label>
 						</div>
-						<div className="form-check">
-							<input
-								className="form-check-input"
-								type="radio"
-								name="gridRadios"
-								id="gridRadios2"
-								value="option2"
-							/>
-							<label className="form-check-label" for="gridRadios2">
+						<div className="form-check" onClick={this.handleInputChange}>
+							<label htmlFor="gridRadios2">
 								One time
+								<input
+									className="form-check-input"
+									type="radio"
+									name="donationFrequency"
+									id="donationFrequency2"
+									value="oneTime"
+									checked={this.state.donateForm.donationFrequency === 'oneTime'}
+								/>
 							</label>
 						</div>
 					</div>
 					<div className="form-group">
-						<label for="fullName">Your name</label>
-						<input type="text" className="form-control" id="fullName" placeholder="" />
+						<label htmlFor="fullName">Select your amount</label>
+						<ul className="horizontal-chooser">
+							{donationChoice.map(amount => renderDonationChoice(amount))}
+							<li
+								className="choice-amount"
+								onClick={this.handleInputChange}
+								style={{
+									width: `${100 / (donationChoice.length + 1)}%`,
+									minWidth: `${100 / (donationChoice.length + 1)}%`
+								}}
+							>
+								<label>
+									Other
+									<input
+										className="hidden-radio"
+										type="text"
+										name="donationAmount"
+										id="donationAmountn"
+										value={this.state.donateForm.donationAmount}
+									/>
+								</label>
+							</li>
+						</ul>
+					</div>
+					<div className="form-group">
+						<label htmlFor="fullName">Your name</label>
+						<input
+							type="text"
+							className="form-control"
+							name="fullName"
+							value={this.state.donateForm.fullName}
+							onChange={this.handleInputChange}
+						/>
 					</div>
 					<button className="btn btn-link p-0" onClick={this.props.toggleHonoreeFields}>
 						{!this.props.shouldShowHonoreeFields
@@ -89,14 +175,27 @@ class CheckoutForm extends React.Component {
 							: "Never mind — this gift isn't in honor of another person"}
 					</button>
 					<div className={this.props.honoreeFieldsClassName}>
-						<div className="honoree-details">
+						<div className="honoree-details my-2">
 							<div className="form-group">
-								<label for="honoreeName">Honoree's name</label>
-								<input type="text" className="form-control" id="honoreeName" placeholder="" />
+								<label htmlFor="honoreeName">Honoree's name</label>
+								<input
+									type="text"
+									className="form-control"
+									name="honoreeName"
+									value={this.state.donateForm.honoreeName}
+									onChange={this.handleInputChange}
+								/>
 							</div>
 							<div className="form-group">
-								<label for="honoreeEmail">Honoree's email</label>
-								<input type="email" className="form-control" id="honoreeEmail" placeholder="" />
+								<label htmlFor="honoreeEmail">Honoree's email</label>
+								<input
+									type="email"
+									className="form-control"
+									name="honoreeEmail"
+									value={this.state.donateForm.honoreeEmail}
+									onChange={this.handleInputChange}
+								/>
+								<small>We will notify your honoree of your gift</small>
 							</div>
 						</div>
 					</div>
@@ -106,7 +205,6 @@ class CheckoutForm extends React.Component {
 						</button>
 						<button className="btn btn-primary">Use Paypal</button>
 					</div>
-					<p className="disclaimer">By donating, you agree to our terms of service and privacy policy.</p>
 				</form>
 			</React.Fragment>
 		);
