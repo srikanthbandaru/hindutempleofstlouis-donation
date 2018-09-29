@@ -6,6 +6,8 @@ import {
 	PostalCodeElement,
 	injectStripe
 } from 'react-stripe-elements';
+
+import { donationRef } from '../../config/firebase';
 import Modal from '../shared/Modal';
 
 class CheckoutForm extends React.Component {
@@ -46,8 +48,15 @@ class CheckoutForm extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
+		const { donateForm } = this.state;
+
+		this.props.stripe.createToken({ name: this.state.donateForm.fullName }).then(({ token }) => {
 			console.log('Received Stripe token:', token);
+			donateForm.token = token;
+
+			donationRef
+				.push()
+				.set(donateForm)
 		});
 	};
 
