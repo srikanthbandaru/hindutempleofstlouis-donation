@@ -158,10 +158,10 @@ class CheckoutForm extends React.Component {
 								<label>
 									Other
 									<input
-										className="hidden-radio"
-										type="text"
+										type="number"
+										onChange={this.handleInputChange}
 										name="donationAmount"
-										id="donationAmountn"
+										id="other-amount"
 										value={this.state.donateForm.donationAmount}
 									/>
 								</label>
