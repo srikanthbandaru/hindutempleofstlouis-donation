@@ -54,9 +54,7 @@ class CheckoutForm extends React.Component {
 			console.log('Received Stripe token:', token);
 			donateForm.token = token;
 
-			donationRef
-				.push()
-				.set(donateForm)
+			donationRef.push().set(donateForm);
 		});
 	};
 
