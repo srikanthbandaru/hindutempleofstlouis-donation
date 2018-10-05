@@ -34,9 +34,13 @@ class CardDetailsForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" className="w-100" value={this.props.donateForm.fullName} />
+                <div className="input-group">
+                    <span className="username" />
+                    <input type="text" className="w-100" value={this.props.donateForm.fullName} />
+                </div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 input-group email-group">
+                        <span className="email" />
                         <input
                             type="email"
                             placeHolder="Email"
@@ -45,7 +49,8 @@ class CardDetailsForm extends React.Component {
                             name="email"
                         />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 input-group phone-group">
+                        <span className="phone" />
                         <input
                             type="number"
                             placeholder="Phone"
@@ -56,9 +61,11 @@ class CardDetailsForm extends React.Component {
                     </div>
                 </div>
 
-                <hr />
+                <br />
                 <CardElement />
-                <button>Pay {this.props.donateForm.donationAmount}</button>
+                <br />
+
+                <button type="button" className="btn btn-success">Donate {this.props.donateForm.donationAmount}</button>
             </form>
         );
     }
