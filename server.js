@@ -1,12 +1,16 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 8000;
 
+app.use(bodyParser.json({ extended: true }));
+
 // API calls
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+
+app.post('/api/createDonator', (req, res) => {
+  res.send(req.body)
 });
 
 if (process.env.NODE_ENV === 'production') {
