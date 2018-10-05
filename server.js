@@ -1,3 +1,6 @@
+require('dotenv').config({path: './.env.local'});
+
+const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_APIKEY);
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -6,10 +9,31 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.text({ extended: true }));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // API calls
+app.post('/api/createDonator', async (req, res) => {
+  console.log('boooooooooooooooooo');
+  console.log(process.env.REACT_APP_STRIPE_SECRET_APIKEY);
+  
+  
+  const request = JSON.parse(req.body);
+  console.log(request.token.id);
+  
+  var customer = await stripe.customers.create(
+    { email: 'customer@example.com',
+      source: request.token.id}                                                                                          
+  );
 
-app.post('/api/createDonator', (req, res) => {
+  console.log(customer);
+  
+  
   res.send(req.body)
 });
 

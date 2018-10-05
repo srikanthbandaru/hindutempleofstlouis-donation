@@ -51,10 +51,20 @@ class CheckoutForm extends React.Component {
 		const { donateForm } = this.state;
 
 		this.props.stripe.createToken({ name: this.state.donateForm.fullName }).then(({ token }) => {
-			console.log('Received Stripe token:', token);
 			donateForm.token = token;
 
-			donationRef.push().set(donateForm);
+			fetch('http://localhost:8000/api/createDonator', {
+				method: 'post',
+				contentType: 'application/json',
+				body: JSON.stringify(donateForm)
+			}).then((response) => {
+				console.log(response);
+				return response.json();
+			})
+
+			console.log('Received Stripe token:', donateForm);
+
+			// donationRef.push().set(donateForm);
 		});
 	};
 
