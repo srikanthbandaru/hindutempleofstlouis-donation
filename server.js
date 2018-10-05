@@ -19,10 +19,6 @@ app.use(function(req, res, next) {
 
 // API calls
 app.post('/api/createDonator', async (req, res) => {
-  console.log('boooooooooooooooooo');
-  console.log(process.env.REACT_APP_STRIPE_SECRET_APIKEY);
-  
-  
   const request = JSON.parse(req.body);
   console.log(request.token.id);
   
