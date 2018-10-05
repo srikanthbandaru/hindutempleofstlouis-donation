@@ -10,7 +10,7 @@ class CardDetailsForm extends React.Component {
     }
 
     handleSubmit = event => {
-        event.preventDefault();
+        event.preventDefault();        
         const { donateForm } = this.props;
 
         this.props.stripe.createToken({ name: donateForm.fullName }).then(({ token }) => {
@@ -45,8 +45,9 @@ class CardDetailsForm extends React.Component {
                             type="email"
                             placeHolder="Email"
                             className="w-100"
-                            value={this.state.email}
+                            value={this.props.donateForm.email}
                             name="email"
+                            onChange={this.props.handleInputChange}
                         />
                     </div>
                     <div className="col-md-6 input-group phone-group">
@@ -55,8 +56,9 @@ class CardDetailsForm extends React.Component {
                             type="number"
                             placeholder="Phone"
                             className="w-100"
-                            value={this.state.phoneNumber}
+                            value={this.props.donateForm.phoneNumber}
                             name="phoneNumber"
+                            onChange={this.props.handleInputChange}
                         />
                     </div>
                 </div>
@@ -65,7 +67,7 @@ class CardDetailsForm extends React.Component {
                 <CardElement />
                 <br />
 
-                <button type="button" className="btn btn-success">Donate {this.props.donateForm.donationAmount}</button>
+                <button type="submit" className="btn btn-success">Donate {this.props.donateForm.donationAmount}</button>
             </form>
         );
     }

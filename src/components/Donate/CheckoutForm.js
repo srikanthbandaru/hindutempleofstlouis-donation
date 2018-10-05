@@ -12,7 +12,9 @@ class CheckoutForm extends React.Component {
             donationAmount: "$10",
             fullName: "",
             honoreeName: "",
-            honoreeEmail: ""
+            honoreeEmail: "",
+            email: "",
+            phone: ""
         }
     };
 
@@ -68,7 +70,13 @@ class CheckoutForm extends React.Component {
             <React.Fragment>
                 {this.state.shouldShowStripeCheckoutModal && (
                     <Modal
-                        modalBody={<CardDetailsForm donateForm={this.state.donateForm} stripe={this.props.stripe} />}
+                        modalBody={
+                            <CardDetailsForm
+                                donateForm={this.state.donateForm}
+                                stripe={this.props.stripe}
+                                handleInputChange={this.handleInputChange}
+                            />
+                        }
                         subTitle="Donation"
                         handleClose={this.toggleStripeCheckoutModal}
                     />
