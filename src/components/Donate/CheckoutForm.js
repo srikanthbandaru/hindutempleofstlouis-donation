@@ -19,10 +19,12 @@ class CheckoutForm extends React.Component {
     };
 
     toggleStripeCheckoutModal = event => {
-        event.preventDefault();
-        this.setState({
-            shouldShowStripeCheckoutModal: !this.state.shouldShowStripeCheckoutModal
-        });
+		event.preventDefault();
+		if (this.state.donateForm.fullName.length > 3) {
+			this.setState({
+				shouldShowStripeCheckoutModal: !this.state.shouldShowStripeCheckoutModal
+			});
+		}
     };
 
     handleInputChange = event => {
