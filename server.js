@@ -18,40 +18,87 @@ app.use(function(req, res, next) {
 });
 
 // API calls
+const createCustomer = request => {
+	return stripe.customers.create({
+		email: request.email,
+		source: request.token.id
+	});
+};
+
+const createCharge = (request, customer) => {
+	return stripe.charges.create({
+		amount: Number(`${request.donationAmount}00`),
+		currency: 'usd',
+		description: 'One time donation',
+		// source: request.token.id,
+		customer: customer.id,
+		statement_descriptor: 'Custom descriptor'
+	});
+};
+
+const createSubscription = (customer, plan) => {
+	return stripe.subscriptions.create({
+		customer: customer.id,
+		items: [
+			{
+				plan
+			}
+		]
+	});
+};
+
+const createPlan = request => {
+	return stripe.plans.create({
+		amount: Number(`${request.donationAmount}00`),
+		interval: 'month',
+		product: {
+			name: 'Custom amount'
+		},
+		currency: 'usd'
+	});
+};
+
+const donationOptions = [10, 35, 50, 100, 250];
+
+app.get('/api/donationOptions', async (req, res) => {
+	res.send(donationOptions);
+});
+
 app.post('/api/createDonator', async (req, res) => {
 	const request = JSON.parse(req.body);
+	const customer = await createCustomer(request);
+	let charge, createSubscriptionResponse, createPlanResponse;
 
-	var customer = await stripe.customers
-		.create({
-			email: request.email,
-			source: request.token.id
-		})
-		.then(customer => {
-			console.log(customer);
+	console.log(Number(request.donationAmount));
 
-			request.customer = customer;
-			if (request.donationFrequency === 'oneTime') {
-				return stripe.charges.create({
-					amount: 5500,
-					currency: 'usd',
-					description: 'Donation',
-					// source: request.token.id,
-					customer: customer.id,
-					statement_descriptor: 'Custom descriptor'
-				});
-			}
-		})
-		.then(charges => {
-			request.charges = charges;
-			console.log(charges);
-		});
+	console.log(donationOptions.includes(Number(request.donationAmount)));
 
-	// create customer
-	// if one time, create charge
-	// else
-	//
+	if (request.donationFrequency === 'oneTime') {
+		charge = await createCharge(request, customer);
+	} else if (donationOptions.includes(Number(request.donationAmount))) {
+		// recurring payments - one of suggested amounts
+		const plan = {
+			10: 'plan_DjzM6a0mah4M41',
+			35: 'plan_DjzMMq1zsUpDqo',
+			50: 'plan_DjzN5knl2Vg3qM',
+			100: 'plan_DjzNrTvqAOKGfC',
+			250: 'plan_DjzQTPdkvy79h8'
+		}[Number(request.donationAmount)];
+		createSubscriptionResponse = await createSubscription(customer, plan);
+	} else {
+		// recurring payments - custom amount
+		createPlanResponse = await createPlan(request);
+		createSubscriptionResponse = await createSubscription(customer, createPlanResponse.id);
+	}
 
+	console.log('111111111111111');
 	console.log(customer);
+	console.log('222222222222222');
+	console.log(charge);
+	console.log('333333333333333');
+	console.log(createSubscriptionResponse);
+	console.log('444444444444444');
+	console.log(createPlanResponse);
 
 	res.send(req.body);
 });
