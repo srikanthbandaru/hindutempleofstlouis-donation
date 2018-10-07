@@ -20,12 +20,35 @@ app.use(function(req, res, next) {
 // API calls
 app.post("/api/createDonator", async (req, res) => {
     const request = JSON.parse(req.body);
-    console.log(request.token.id);
 
-    var customer = await stripe.customers.create({
-        email: request.email,
-        source: request.token.id
-    });
+    var customer = await stripe.customers
+        .create({
+            email: request.email,
+            source: request.token.id
+        })
+        .then(customer => {
+            console.log(customer);
+
+            request.customer = customer;
+            if (request.donationFrequency === "oneTime") {
+                return stripe.charges.create({
+                    amount: 5500,
+                    currency: "usd",
+                    description: "Donation",
+                    // source: request.token.id,
+                    customer: customer.id,
+                    statement_descriptor: "Custom descriptor"
+                });
+            }
+        })
+        .then(charges => {
+            console.log(charges);
+        });
+
+    // create customer
+    // if one time, create charge
+    // else
+    //
 
     console.log(customer);
 
