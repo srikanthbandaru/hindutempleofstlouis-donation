@@ -9,7 +9,7 @@ class CheckoutForm extends React.Component {
 		shouldShowStripeCheckoutModal: false,
 		donateForm: {
 			donationFrequency: 'monthly',
-			donationAmount: '$10',
+			donationAmount: 10,
 			fullName: '',
 			honoreeName: '',
 			honoreeEmail: '',
@@ -45,10 +45,10 @@ class CheckoutForm extends React.Component {
 	};
 
 	render() {
-		const donationChoice = ['$10', '$35', '$50', '$100', '$250'];
+		const donationChoice = [10, 35, 50, 100, 250];
 		const renderDonationChoice = amount => (
 			<li
-				className={`choice-amount ${this.state.donateForm.donationAmount === amount ? 'selected' : ''}`}
+				className={`choice-amount ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
 				style={{
 					width: `${100 / (donationChoice.length + 1)}%`,
 					minWidth: `${100 / (donationChoice.length + 1)}%`
@@ -56,7 +56,7 @@ class CheckoutForm extends React.Component {
 				onClick={this.handleInputChange}
 			>
 				<label>
-					{amount}
+					${amount}
 					<input
 						className="hidden-radio"
 						type="radio"
