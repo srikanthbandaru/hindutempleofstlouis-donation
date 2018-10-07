@@ -68,7 +68,7 @@ class CardDetailsForm extends React.Component {
 				<br />
 
 				<button type="submit" className="btn btn-success">
-					Donate {this.props.donateForm.donationAmount}
+					Donate ${this.props.donateForm.donationAmount}
 				</button>
 			</form>
 		);

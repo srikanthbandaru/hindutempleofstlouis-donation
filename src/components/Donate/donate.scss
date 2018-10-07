@@ -146,6 +146,17 @@ label {
 	}
 }
 
+.input-group.select-amount {
+	span {
+		background-color: transparent;
+		opacity: 1;
+		top: 11px
+	}
+	input {
+		padding-left: 28px;
+	}
+}
+
 .email-group {
 	padding-right: 0px;
 }

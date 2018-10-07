@@ -128,13 +128,16 @@ class CheckoutForm extends React.Component {
 							>
 								<label>
 									Other
-									<input
-										type="number"
-										onChange={this.handleInputChange}
-										name="donationAmount"
-										id="other-amount"
-										value={this.state.donateForm.donationAmount}
-									/>
+									<div className="input-group select-amount">
+										<span>$</span>
+										<input
+											type="number"
+											onChange={this.handleInputChange}
+											name="donationAmount"
+											id="other-amount"
+											value={this.state.donateForm.donationAmount}
+										/>
+									</div>
 								</label>
 							</li>
 						</ul>
