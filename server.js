@@ -5,7 +5,28 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+const admin = require('firebase-admin');
 
+const serviceAccount = {
+	type: 'service_account',
+	project_id: process.env.REACT_APP_FIREBASE_PROJECTID,
+	private_key_id: process.env.REACT_APP_FIREBASE_PRIVATE_KEY_ID,
+	private_key: process.env.REACT_APP_FIREBASE_PRIVATE_KEY,
+	client_email: process.env.REACT_APP_FIREBASE_CLIENT_EMAIL,
+	client_id: process.env.REACT_APP_FIREBASE_CLIENT_ID,
+	auth_uri: process.env.REACT_APP_FIREBASE_AUTH_URI,
+	token_uri: process.env.REACT_APP_FIREBASE_TOKEN_URI,
+	auth_provider_x509_cert_url: process.env.REACT_APP_FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+	client_x509_cert_url: process.env.REACT_APP_FIREBASE_CLIENT_X509_CERT_URL
+};
+
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: 'https://hindutempleofstlouis-donation.firebaseio.com'
+});
+
+const databaseRef = admin.database().ref();
+const donationRef = databaseRef.child('donationDetails');
 const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json({ extended: true }));
@@ -64,14 +85,10 @@ app.get('/api/donationOptions', async (req, res) => {
 	res.send(donationOptions);
 });
 
-app.post('/api/createDonator', async (req, res) => {
+app.post('/api/donate', async (req, res) => {
 	const request = JSON.parse(req.body);
 	const customer = await createCustomer(request);
 	let charge, createSubscriptionResponse, createPlanResponse;
-
-	console.log(Number(request.donationAmount));
-
-	console.log(donationOptions.includes(Number(request.donationAmount)));
 
 	if (request.donationFrequency === 'oneTime') {
 		charge = await createCharge(request, customer);
@@ -91,14 +108,14 @@ app.post('/api/createDonator', async (req, res) => {
 		createSubscriptionResponse = await createSubscription(customer, createPlanResponse.id);
 	}
 
-	console.log('111111111111111');
-	console.log(customer);
-	console.log('222222222222222');
-	console.log(charge);
-	console.log('333333333333333');
-	console.log(createSubscriptionResponse);
-	console.log('444444444444444');
-	console.log(createPlanResponse);
+	request.customer = customer || {};
+	request.charge = charge || {};
+	request.createSubscriptionResponse = createSubscriptionResponse || {};
+	request.createPlanResponse = createPlanResponse || {};
+
+	console.log(request);
+
+	donationRef.push().set(request);
 
 	res.send(req.body);
 });
