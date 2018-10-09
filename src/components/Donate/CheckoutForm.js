@@ -1,32 +1,30 @@
 import React from 'react';
-import {
-	CardNumberElement,
-	CardExpiryElement,
-	CardCVCElement,
-	PostalCodeElement,
-	injectStripe
-} from 'react-stripe-elements';
+import { injectStripe } from 'react-stripe-elements';
 
-import { donationRef } from '../../config/firebase';
 import Modal from '../shared/Modal';
+import CardDetailsForm from './CardDetailsForm';
 
 class CheckoutForm extends React.Component {
 	state = {
 		shouldShowStripeCheckoutModal: false,
 		donateForm: {
 			donationFrequency: 'monthly',
-			donationAmount: '$10',
+			donationAmount: 10,
 			fullName: '',
 			honoreeName: '',
-			honoreeEmail: ''
+			honoreeEmail: '',
+			email: '',
+			phone: ''
 		}
 	};
 
 	toggleStripeCheckoutModal = event => {
 		event.preventDefault();
-		this.setState({
-			shouldShowStripeCheckoutModal: !this.state.shouldShowStripeCheckoutModal
-		});
+		if (this.state.donateForm.fullName.length > 3) {
+			this.setState({
+				shouldShowStripeCheckoutModal: !this.state.shouldShowStripeCheckoutModal
+			});
+		}
 	};
 
 	handleInputChange = event => {
@@ -46,48 +44,11 @@ class CheckoutForm extends React.Component {
 		});
 	};
 
-	handleSubmit = event => {
-		event.preventDefault();
-		const { donateForm } = this.state;
-
-		this.props.stripe.createToken({ name: this.state.donateForm.fullName }).then(({ token }) => {
-			console.log('Received Stripe token:', token);
-			donateForm.token = token;
-
-			donationRef
-				.push()
-				.set(donateForm)
-		});
-	};
-
 	render() {
-		const cardElement = (
-			<form onSubmit={this.handleSubmit}>
-				<label>
-					Card number
-					<CardNumberElement />
-				</label>
-				<div className="row">
-					<div className="col-md-6">
-						<label>
-							Expiration date
-							<CardExpiryElement />
-						</label>
-					</div>
-					<div className="col-md-6">
-						<label>
-							CVC
-							<CardCVCElement />
-						</label>
-					</div>
-				</div>
-				<button>Pay</button>
-			</form>
-		);
-		const donationChoice = ['$10', '$35', '$50', '$100', '$250'];
+		const donationChoice = [10, 35, 50, 100, 250];
 		const renderDonationChoice = amount => (
 			<li
-				className={`choice-amount ${this.state.donateForm.donationAmount === amount ? 'selected' : ''}`}
+				className={`choice-amount ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
 				style={{
 					width: `${100 / (donationChoice.length + 1)}%`,
 					minWidth: `${100 / (donationChoice.length + 1)}%`
@@ -95,7 +56,7 @@ class CheckoutForm extends React.Component {
 				onClick={this.handleInputChange}
 			>
 				<label>
-					{amount}
+					${amount}
 					<input
 						className="hidden-radio"
 						type="radio"
@@ -110,7 +71,17 @@ class CheckoutForm extends React.Component {
 		return (
 			<React.Fragment>
 				{this.state.shouldShowStripeCheckoutModal && (
-					<Modal modalBody={cardElement} subTitle="Donation" handleClose={this.toggleStripeCheckoutModal} />
+					<Modal
+						modalBody={
+							<CardDetailsForm
+								donateForm={this.state.donateForm}
+								stripe={this.props.stripe}
+								handleInputChange={this.handleInputChange}
+							/>
+						}
+						subTitle="Donation"
+						handleClose={this.toggleStripeCheckoutModal}
+					/>
 				)}
 
 				<form className="mt-1" id="donate-form">
@@ -157,13 +128,16 @@ class CheckoutForm extends React.Component {
 							>
 								<label>
 									Other
-									<input
-										className="hidden-radio"
-										type="text"
-										name="donationAmount"
-										id="donationAmountn"
-										value={this.state.donateForm.donationAmount}
-									/>
+									<div className="input-group select-amount">
+										<span>$</span>
+										<input
+											type="number"
+											onChange={this.handleInputChange}
+											name="donationAmount"
+											id="other-amount"
+											value={this.state.donateForm.donationAmount}
+										/>
+									</div>
 								</label>
 							</li>
 						</ul>

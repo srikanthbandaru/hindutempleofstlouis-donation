@@ -35,7 +35,7 @@ export default function Modal(props) {
 								<div class="Header-account" />
 							</header>
 						</div>
-						<div class="modal-body">{props.modalBody}</div>
+						<div class="modal-body text-center">{props.modalBody}</div>
 						<div class="modal-footer">{props.modalFooter}</div>
 					</div>
 				</div>
