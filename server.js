@@ -51,7 +51,7 @@ const createCharge = (request, customer) => {
 		amount: Number(`${request.donationAmount}00`),
 		currency: 'usd',
 		description: 'One time donation',
-		// source: request.token.id,
+		receipt_email: request.email,
 		customer: customer.id,
 		statement_descriptor: 'Custom descriptor'
 	});
@@ -112,8 +112,6 @@ app.post('/api/donate', async (req, res) => {
 	request.charge = charge || {};
 	request.createSubscriptionResponse = createSubscriptionResponse || {};
 	request.createPlanResponse = createPlanResponse || {};
-
-	console.log(request);
 
 	donationRef.push().set(request);
 
