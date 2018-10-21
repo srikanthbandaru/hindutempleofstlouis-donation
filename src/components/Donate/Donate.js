@@ -27,10 +27,10 @@ export default class Donate extends React.Component {
 					<div className="col-md-4 px-3">
 						<h1 className="font-weight-bold">Help us do more</h1>
 						<p>
-							We'll get right to the point: we're asking you to help support Khan Academy. We're a
-							nonprofit that relies on support from people like you. If everyone reading this gives $10
-							monthly, Khan Academy can continue to thrive for years. Please help keep Khan Academy free,
-							for anyone, anywhere forever.
+							We're asking you to help support OUR Hindu Temple Education & Cultural Center. This is a
+							nonprofit organization that relies on support from people like you. With your donation, our
+							education center can continue to thrive for years. Please help us to continue promoting our
+							traditions and culture to carry forward with new generations.
 						</p>
 					</div>
 					<div className="col-md-6 px-3">
