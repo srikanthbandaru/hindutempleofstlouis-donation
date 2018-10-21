@@ -12,6 +12,7 @@
 		"prettier": "^1.14.3",
 		"react": "^16.5.2",
 		"react-dom": "^16.5.2",
+		"react-loading": "^2.0.3",
 		"react-scripts": "2.0.1",
 		"react-stripe-elements": "^2.0.1",
 		"stripe": "^6.12.1"

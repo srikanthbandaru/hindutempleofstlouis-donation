@@ -115,7 +115,10 @@ app.post('/api/donate', async (req, res) => {
 
 	donationRef.push().set(request);
 
-	res.send(req.body);
+	console.log(JSON.parse(req.body));
+
+	const body = JSON.parse(req.body);
+	res.json(body);
 });
 
 if (process.env.NODE_ENV === 'production') {
