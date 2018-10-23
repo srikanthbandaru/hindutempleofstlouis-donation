@@ -6,6 +6,29 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
+const nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		   user: process.env.REACT_APP_NODEMAILER_EMAIL,
+		   pass: process.env.REACT_APP_NODEMAILER_PASSWORD
+	   }
+   });
+
+   const mailOptions = {
+	from: process.env.REACT_APP_NODEMAILER_EMAIL, // sender address
+	to: 'snackysrikanth@gmail.com', // list of receivers
+	subject: 'Your receipt from The Hindu Temple of Saint Louis', // Subject line
+	html: '<p>Your html here</p>'// plain text body
+  };
+
+//   transporter.sendMail(mailOptions, function (err, info) {
+// 	if(err)
+// 	  console.log(err)
+// 	else
+// 	  console.log(info);
+//  });
 
 const serviceAccount = {
 	type: 'service_account',
@@ -50,10 +73,10 @@ const createCharge = (request, customer) => {
 	return stripe.charges.create({
 		amount: Number(`${request.donationAmount}00`),
 		currency: 'usd',
-		description: 'One time donation',
+		description: 'Donation for Cultural & Education Center', // receipt emails will include the description of the charge(s)
 		receipt_email: request.email,
 		customer: customer.id,
-		statement_descriptor: 'Custom descriptor'
+		statement_descriptor: 'The Hindu Temple STL' // An arbitrary string to be displayed on our donator's credit card statement. Limit is 22 characters
 	});
 };
 
