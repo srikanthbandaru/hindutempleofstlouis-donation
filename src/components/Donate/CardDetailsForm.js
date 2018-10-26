@@ -18,7 +18,7 @@ class CardDetailsForm extends React.Component {
 		event.preventDefault();
 		this.setState({
 			isLoading: true
-		})
+		});
 
 		const { donateForm } = this.props;
 
@@ -35,17 +35,16 @@ class CardDetailsForm extends React.Component {
 					this.setState({
 						donateResponse: body,
 						isLoading: false
-					})
+					});
 				})
 				.catch(error => {
 					this.setState({
 						error: 'Something went wrong. Please try again.',
 						isLoading: false
-					})
+					});
 				});
 
 			console.log('donateResponse', donateResponse);
-
 		});
 	};
 
@@ -56,20 +55,22 @@ class CardDetailsForm extends React.Component {
 			return (
 				<div className="donation-success">
 					<p className="thank-you">Thank you!</p>
-					<p>Your {donateResponse.donationFrequency} donation of ${donateResponse.donationAmount} has been succesfully processed.</p>
+					<p>
+						Your {donateResponse.donationFrequency} donation of ${donateResponse.donationAmount} has been
+						succesfully processed.
+					</p>
 				</div>
-			)
+			);
 		}
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-				{
-					this.state.isLoading && 
-					<div className="processing-donation"> 
+				{this.state.isLoading && (
+					<div className="processing-donation">
 						<ReactLoading type="bars" color="white" height={67} width={67} />
 						<p className="align-middle">Processing Donation</p>
 					</div>
-				}
+				)}
 				<div className="input-group">
 					<span className="username" />
 					<input type="text" className="w-100" value={this.props.donateForm.fullName} />

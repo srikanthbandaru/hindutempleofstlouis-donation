@@ -90,12 +90,12 @@
 
 .processing-donation {
 	height: 100%;
-    width: 94%;
-    color: white;
-    background-color: rgb(53, 126, 221);;
-    position: absolute;
-    z-index: 1;
-	opacity: .9;
+	width: 94%;
+	color: white;
+	background-color: rgb(53, 126, 221);
+	position: absolute;
+	z-index: 1;
+	opacity: 0.9;
 	font-size: 2em;
 	font-weight: 700;
 	div {
@@ -106,9 +106,9 @@
 
 .donation-success {
 	height: 260px;
-    color: white;
-    background-color: green;
-    z-index: 1;
+	color: white;
+	background-color: green;
+	z-index: 1;
 	font-weight: 700;
 	.thank-you {
 		font-size: 2em;

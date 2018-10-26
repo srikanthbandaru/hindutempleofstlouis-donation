@@ -11,17 +11,26 @@ const nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		   user: process.env.REACT_APP_NODEMAILER_EMAIL,
-		   pass: process.env.REACT_APP_NODEMAILER_PASSWORD
-	   }
-   });
+		user: process.env.REACT_APP_NODEMAILER_EMAIL,
+		pass: process.env.REACT_APP_NODEMAILER_PASSWORD
+	}
+});
 
-   const mailOptions = {
+const mailOptions = {
 	from: process.env.REACT_APP_NODEMAILER_EMAIL, // sender address
 	to: 'snackysrikanth@gmail.com', // list of receivers
-	subject: 'Your receipt from The Hindu Temple of Saint Louis', // Subject line
-	html: '<p>Your html here</p>'// plain text body
-  };
+	subject: 'A donation to the Cultural & Education Center has been made!', // Subject line
+	html: `
+			<div>
+				<p>Dear Srikanth Bandaru,</p>
+				<p>
+					We want to let you know that Srikanth Bandaru made a donation to the 
+					<a href="https://edu.hindutemplestlouis.org/" target="blank">Cultural & Education Center</a> 
+					in your honor.
+				</p>
+			</div>
+		` // plain text body
+};
 
 //   transporter.sendMail(mailOptions, function (err, info) {
 // 	if(err)
