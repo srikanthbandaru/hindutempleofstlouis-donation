@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"start": "node server.js",
-		"heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+		"heroku-postbuild": "npm run build",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"format": "prettier --write **/*.{js,json,md,scss,css} !build/** --config .prettierrc",
