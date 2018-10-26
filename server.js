@@ -43,7 +43,7 @@ const serviceAccount = {
 	type: 'service_account',
 	project_id: process.env.REACT_APP_FIREBASE_PROJECTID,
 	private_key_id: process.env.REACT_APP_FIREBASE_PRIVATE_KEY_ID,
-	private_key: process.env.REACT_APP_FIREBASE_PRIVATE_KEY,
+	private_key: process.env.REACT_APP_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
 	client_email: process.env.REACT_APP_FIREBASE_CLIENT_EMAIL,
 	client_id: process.env.REACT_APP_FIREBASE_CLIENT_ID,
 	auth_uri: process.env.REACT_APP_FIREBASE_AUTH_URI,
