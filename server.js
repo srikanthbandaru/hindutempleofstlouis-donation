@@ -65,7 +65,7 @@ const serviceAccount = {
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
-	databaseURL: 'https://hindutempleofstlouis-donation.firebaseio.com'
+	databaseURL: 'https://edu-hindutemplestlouis.firebaseio.com'
 });
 
 const databaseRef = admin.database().ref();

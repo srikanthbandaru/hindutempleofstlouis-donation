@@ -40,7 +40,7 @@ class CardDetailsForm extends React.Component {
 				})
 				.catch(error => {
 					this.setState({
-						error: 'Something is broke. Please try again or contact STLTempleEdu@gmail.com',
+						error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com',
 						isLoading: false
 					});
 				});

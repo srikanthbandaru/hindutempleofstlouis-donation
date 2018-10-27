@@ -221,24 +221,6 @@ class CheckoutForm extends React.Component {
 							<input type="hidden" name="hosted_button_id" value="NCJ8XSP6FBEGU" />
 							<button className="btn btn-primary w-100">Use Paypal</button>
 						</form>
-
-						{/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="business"
-								value="bsrikanth602@gmail.com" />
-
-							<input type="hidden" name="cmd" value="_donations" />
-
-							<input type="hidden" name="item_name" value="Friends of the Park" />
-							<input type="hidden" name="item_number" value="Fall Cleanup Campaign" />
-							<input type="hidden" name="amount" value="25.00" />
-							<input type="hidden" name="currency_code" value="USD" />
-
-							<input type="image" name="submit"
-							src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
-							alt="Donate" />
-							<img alt="" width="1" height="1"
-							src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" />
-						</form> */}
 					</div>
 				</form>
 			</React.Fragment>
