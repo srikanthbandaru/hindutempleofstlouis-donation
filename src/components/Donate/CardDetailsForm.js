@@ -25,7 +25,7 @@ class CardDetailsForm extends React.Component {
 		this.props.stripe.createToken({ name: donateForm.fullName }).then(({ token }) => {
 			donateForm.token = token;
 
-			const donateResponse = fetch('/api/donate', {
+			fetch('/api/donate', {
 				method: 'post',
 				contentType: 'application/json',
 				body: JSON.stringify(donateForm)
@@ -44,7 +44,7 @@ class CardDetailsForm extends React.Component {
 					});
 				});
 
-			console.log('donateResponse', donateResponse);
+			// console.log('donateResponse', donateResponse);
 		});
 	};
 

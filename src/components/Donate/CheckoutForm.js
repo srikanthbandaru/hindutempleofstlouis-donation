@@ -15,8 +15,28 @@ class CheckoutForm extends React.Component {
 			honoreeEmail: '',
 			email: '',
 			phone: ''
-		}
+		},
+		donationChoice: []
 	};
+
+	componentDidMount() {
+		fetch('/api/donationOptions', {
+			method: 'get',
+			contentType: 'application/json'
+		})
+			.then(response => response.json())
+			.then(donationOptions => {
+				this.setState({
+					donationChoice: donationOptions
+				});
+			})
+			.catch(error => {
+				this.setState({
+					error: 'Something went wrong. Please try again.',
+					isLoading: false
+				});
+			});
+	}
 
 	toggleStripeCheckoutModal = event => {
 		event.preventDefault();
@@ -45,7 +65,7 @@ class CheckoutForm extends React.Component {
 	};
 
 	render() {
-		const donationChoice = [10, 35, 50, 100, 250];
+		const { donationChoice } = this.state;
 		const renderDonationChoice = amount => (
 			<li
 				className={`choice-amount ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}

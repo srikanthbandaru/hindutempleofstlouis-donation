@@ -111,7 +111,7 @@ const createPlan = request => {
 	});
 };
 
-const donationOptions = [10, 35, 50, 100, 250];
+const donationOptions = [50, 75, 100, 150, 250];
 
 app.get('/api/donationOptions', async (req, res) => {
 	res.send(donationOptions);
@@ -147,7 +147,7 @@ app.post('/api/donate', async (req, res) => {
 
 	donationRef.push().set(request);
 
-	console.log(JSON.parse(req.body));
+	// console.log(JSON.parse(req.body));
 
 	const body = JSON.parse(req.body);
 	res.json(body);
