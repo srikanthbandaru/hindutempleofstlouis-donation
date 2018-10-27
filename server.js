@@ -164,7 +164,7 @@ app.post('/api/donate', async (req, res) => {
 		
 		const body = JSON.parse(req.body);
 		res.json(body);
-	} catch {
+	} catch(err) {
 		const error = {error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com'};
 		res.status(500).json(error);
 	}
