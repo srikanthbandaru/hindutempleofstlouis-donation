@@ -20,12 +20,14 @@ export default class Donate extends React.Component {
 
 		return (
 			<StripeProvider apiKey={process.env.REACT_APP_STRIPE_APIKEY}>
-				<div className="row my-5">
+				<div className="row my-5" style={{ color: 'black', fontWeight: '600' }}>
 					<div className="col-md-2 px-3 d-md-none d-lg-block">
 						<img src={templeVector} className="img-fluid temple-logo mx-auto my-3 d-block" alt="logo" />
 					</div>
 					<div className="col-md-4 px-3">
-						<h1 className="font-weight-bold">Help us do more</h1>
+						<h1 className="font-weight-bold" style={{ fontSize: '2em' }}>
+							Help us do more
+						</h1>
 						<p>
 							We're asking you to help support OUR Hindu Temple Education & Cultural Center. This is a
 							nonprofit organization that relies on support from people like you. With your donation, our

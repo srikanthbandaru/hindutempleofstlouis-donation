@@ -9,7 +9,7 @@ class CheckoutForm extends React.Component {
 		shouldShowStripeCheckoutModal: false,
 		donateForm: {
 			donationFrequency: 'monthly',
-			donationAmount: 10,
+			donationAmount: 50,
 			fullName: '',
 			honoreeName: '',
 			honoreeEmail: '',

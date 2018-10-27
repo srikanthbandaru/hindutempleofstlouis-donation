@@ -30,7 +30,9 @@ export default function Modal(props) {
 										<div class="Header-logoImage" alt="Logo" />
 									</div>
 								</div>
-								<h4 class="title text-center">The Hindu Temple of Saint Louis</h4>
+								<h4 class="title text-center" style={{ fontSize: '1.5em' }}>
+									The Hindu Temple of Saint Louis
+								</h4>
 								<h5 class="sub-title text-center">{props.subTitle}</h5>
 								<div class="Header-account" />
 							</header>

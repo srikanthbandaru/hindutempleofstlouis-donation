@@ -1,41 +1,252 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <script src="https://js.stripe.com/v3/"></script>    
-    <title>Donate - The Hindu Temple of Saint Louis</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hindu Temple St.Louis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+			<script src="https://js.stripe.com/v3/"></script>
+			<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+		</head>
+		<div id="paypal-button-container"></div>
+		<body>
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">Hindu Temple of St.Louis</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="volunteers.html">Annual Fundraing Team</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle">
+						<span class="fa fa-bars"></span>
+					</a>
+				</div>
+			</header>
+			<!-- Banner -->
+			<section id="banner">
+				<h1>Welcome to Cultural & Education Center</h1>
+				<p></p>
+			</section>
+			<!-- Three -->
+			<section id="zero" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Million March Enablers</h2>
+						<h3>OUR TEMPLE — OUR CULTURE — OUR FUTURE </h3>
+					</header>
+					<h4>
+               Our new Cultural Education Center will be a significant milestone for our future generations with below objectives
+               
+					</br>
+					<ul>
+						<li>A place of educational activities</li>
+						<li>A place to celebrate the culture, arts and traditions</li>
+						<li>Platform for yoga & meditation </li>
+						<li>A larger place for social and charitable activities</li>
+						<li>An opportunity to bring our young generation together and to grow the footprint</li>
+					</ul>
+				</h4>
+				<h4>
+               The Hindu Temple of St.Louis education and cultural center has below features to support our FUTURE to carry on generations. OUR cultural & education center costs ~$7.2M and we are short of $2M to complete this project. We are asking you to help support OUR Temple and OUR Cultural & Education Center.  We are a nonprofit that relies on direct support from people like you.
+               
+					<ul>
+						<li>33,860 SFT building with two levels and 6500 SFT partially finished basement </li>
+						<li>14 class rooms with average 425 SFT each</li>
+						<li>7700 SFT function hall/auditorium (capacity: 900)</li>
+						<li>2100 SFT Stage with modern audit & lighting </li>
+						<li>Covered porch, 240 SFT vestibule, 1200 SFT lobby </li>
+						<li>3500 SFT yoga/activity hall with skylights</li>
+						<li>Conference Rooms, Library and more </li>
+						<li>247 Additional Parking Spots </li>
+					</ul>
+               Please consider generous donation to be a part of Million March Enablers program to donate over three years. Click below to see more details.
+            
+				</h4>
+				<footer class="align-center">
+					<a href="https://hindutemple.wufoo.com/forms/m1vfbnqa06ddj22/" class="button special">MILLION MARCH ENABLERS</a>
+				</footer>
+			</article>
+		</div>
+	</section>
+	<!-- Stripe & Paypal donation platform || ReactJS application -->
+	<div id="root"></div>
+	<!-- One -->
+	<section id="one" class="wrapper">
+		<div class="inner">
+			<div class="flex flex-3">
+				<article>
+					<header>
+						<h3>Bhagavad Gita: Chapter 17, Verse 20</h3>
+					</header>
+					<p>
+						<b>दातव्यमिति यद्दानं दीयतेऽनुपकारिणे | </b>
+					</br>
+					<b>देशे काले च पात्रे च तद्दानं सात्विकं स्मृतम् ||  </b>
+				</p>
+				<!--p><b>Daatavyam Iti Yat Daanam Deeyate An-UpakaariNe  | </b></br><b>Deshe Kaale Cha Paatre Cha Tat Daanam Saattvikam Smrutam  || </b></p -->
+				<p> Charity given to a worthy person simply because it is right to give, without consideration of anything in return, at the proper time and in the proper place, is stated to be in the mode of goodness.</p>
+				<!--footer><a href="#" class="button special">More</a></footer -->
+			</article>
+			<article>
+				<header>
+					<h3>SUPPORT OUR EDUCATION CENTER</h3>
+				</header>
+				<p align="justify">
+					<b>We're asking you to help support OUR Hindu Temple Education & Cultural Center.
+                     This is a nonprofit organization that relies on support from people like you.
+                     With your donation, our education center can continue to thrive for years.
+                     Please help us to continue promoting our traditions and culture to carry forward with new generations  </b>
+				</p>
+				<!--p><b>Daatavyam Iti Yat Daanam Deeyate An-UpakaariNe  | </b></br><b>Deshe Kaale Cha Paatre Cha Tat Daanam Saattvikam Smrutam  || </b></p -->
+				<!--footer><a href="#" class="button special">More</a></footer -->
+			</article>
+			<article>
+				<header>
+					<h3>Annual Fundraiser</h3>
+				</header>
+				<p>
+					<b> Please join The Hindu Temple Annual Fund Raising Event to Support our Hindu Temple Education & Cultural Center. It's a fun filled evening with cultural programs, silent auctions, & banquet etc. Please purchase tickets thru Paypal.</b>
+				</b>
+				<div class="row">
+                <div>
+                    <h4>Indivudual - $100</h4>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="RH8YU2BNG2TES">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                    </div>
+                    <div>
+                    <h4> Family - $250</h4>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="T97DCE892G57G">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                    </div>
+                </article>
+													</div>
+												</div>
+											</section>
+											<!-- Two -->
+											<section id="two" class="wrapper style1 special">
+												<div class="inner">
+													<header>
+														<h2>Education & Cultural Center</h2>
+														<p align="justify"> The Hindu Temple of St.Louis Education and Cultural Center vision is to enhance the religious experience for all in our diverse congregational community. The temple will enhance and expand programs in education, youth & adult activities and services to the community. Our Education & Cultural Center is a volunteer-driven, community-supported, non-profit organization under Hindu Temple of St.Louis. Our primary objective is to promotes and practices the ideals of Hindu religion through worship and education. The Temple strives for spiritual richness and human excellence through assimilation of the values emphasized in Hindu scriptures and applying them in our daily lives, while recognizing and respecting other religions and belief systems in their due context. Multi-Purpose Education and Cultural Center, which will have state of the art auditorium (seating capacity 600), 10 classrooms, kitchen, library and meeting rooms with additional 238 parking spaces. The total project cost is $6 million and to date we have raised over $3.0 million through pledges and donations in our fundraising efforts. This includes pledges of $100,000 each for 8 classrooms out of 10 from extremely generous individuals after whom each of these classrooms will be named. In the same light, we continue to develop an educational platform for giving so that the "next generation" will understand the culture, traditions and values of our ancestors.
+                </p>
+													</header>
+													<div class="flex flex-4">
+														<div class="box person">
+															<div class="image round">
+																<img src="https://cdn1.iconfinder.com/data/icons/education-colored-icons-vol-3/128/128-512.png" alt="Classroom" />
+															</div>
+															<h3>Class Rooms</h3>
+															<p></p>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb4-lG4xhG7ZWLc7OFSxKtJAX7GqrGqcBdCe5tyiLv-_UuzO_4" alt="Yoga Center" />
+															</div>
+															<h3>Yoga Center</h3>
+															<p></p>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAABU1BMVEUKO2H////AIjHarCeWf04AO2IALlkAKFbJzdShq7evJjnGIC5gNVPCIjAAru8Aq+4AI1MAN15tn0GGxEAAM1wANmK8ABS9ABtbwfPy+v6L0va+Eifk5uvnuLXZj4/XhoRGXHo/Olrty8jBKC378e735+TJUlvisSKWfk6Xek8AIFEAM2MAL2Scg01knkIJMVZbcop6iZvn6+4uUXGSoK+FlaartsHTpy27lzzY3uMVl89sgJUgQWCId0yxkUGMr0XIoDNBT12Iv0GOp0cAhb00SV6Ui0xmYlinikbOrCuRmEmbpzmEdFJ2bFVNaIO2v8lQV1lxaVZ7tUKRm0lEaVt2qD60qjO2S1dlQl1Wlrpur9F1aXyMjk2oqTbDfH6KtUOTkEvOnZyhKj5Oo9FJeliAgZJoj1AaR2HArC8tXV63trVbKkudmaQoPVdUUVx/bH1ldFSD9LxmAAAO50lEQVR4nNWd65sbtRXGNaxHsiG0o90x1GVpXdrU3vE6+J646002u+RGiJ1smrQUKLSFkpZC+/9/quZmz0UjHc9InvH7AfLkgez8Is15dc7oSMjYgUbH9dWsMZkOh8PBYMD+OZ1OZqv6fNTawQ9HWv/0Ub0xXY6pZRGCse2KUur9G2NMLMteLIeN+kjrM2gjPF5Nl8QhmDGhbDFeRkraw9WxrgfRQjhvDEyL2CK0BKiNLbqczHU8jHLC0ezMtvAWdJvhxBYezJRPWbWEx41xLrq12FiOFQ+lQsKRi1eALhxLF1LhW6mMcNZ2FOCFkM54pspJ1BDOhzZRhRdCkjM1s1UF4art2ErxfNlsIBU8XXHCxkLx8G1ECZ0UnqxFCSe2srePy4jxtCBjMcIJ1srnCZNijEUIGzbWjecz4kkphCuk7f3jMOaPOXkJ523L3BWfKzKu75Zw6Oxs/AJRZ5BvyZqLcLWjFzAuO99UzUE4Gli7HsBApJ1jGLcnnBEdCxiYqNXQTziwSuNzRZbbDuOWhHW7vAH0RclKJ+F05yGUI+tMG2GrTcqm84TH28zULQjntOwZGoriLWYqnHBWhRkayoGvVMGEw3JjaFJkoJpwWY1XcCM8BuZUMMLWuIxlmlg2gsUbEOEIVSXGREUJqFQFIZzrT+RzybQgGRWAcL67THdbOQBEOWF9t6nudrLkxiglrJeVKsHkSBFlhPNqAwImqoRwTio8RX3JEMWEo4pG0ZgssWkICVtoDwCZLwq/xQkJx1U0+rSoKVrAiQiX1Vuq8WWP8xEOq7bYzhYWZBrZhLNqpUtiken2hHOn7KfeStnOn0XYopU3wrgyA2oWYXs/wuhGNIsk4/en+xNlQuGMIiOfsM5/CU2xgv+KipU9+81moTfD4n+44RK2MhZrvxHLfz46bgs1zsJoLj57UAyRW9bgEg64L6F54x2h3vYfj0hWwjP+OqKJXvT7z5pFCCnX+HmEGU7ICN8S6F0gYYNH2KSPav1arX+/0EKY8KqoHMJRRpTRR0h7z7uMj+m80CBy0wwO4TLDKHQRms0H5z4fG8TnyudpmnCVtVrTRNhcPAv5mLrFBpEzT9OEmdtDdRCaPRZgahH1HxVETMXTFOEwM2XSQNhsnndjgEyokGPYSxmhYMGtnLB5+ux25243Dth/UWwQU2WbJGE7O1wrJqSnjy46Bwe3E4S1/qLQINKFmDAzzKgmNE8f3GF8THeSiMVsH5HEdo0EoSn4+1NJ2Fs89vmYaslBLGb7yIlXbVD6p+snbPZqB2vA9CAWtH0cz/fjhMJGAlWExA0wBxH1k8GmmO0nVuAxwomwuKaK8PlFjO/g4CI5iN1i09SOZYpRwpY47VVE+O8E38FB53FyEAvafmwQo4TiIUTmD++9L1JAiP/yS6E+v5tCTDlGUds/yyCUtPPY//lIqA/9v6CP//BzoT75MT2Iqm0/OogRQmEgZZJt07lJAsKfCfUJqaUQD1K2/2OhQcRDLqHsM4yM8DgklIzhx80UYNoxPivoGBtP3BCuZOU1+7+/Fuqvfl7JIk1LIDZVms/Sg6jY9nGDQyhYkfoyb7z/gUhwx+9dyAax2z3vFSE0N1zrX8mr+ArXNI/Sgxi1/e7JN5eXPxWap5unWBMOpUVuhevS0zspwojtnzz8+ujo6GWxesY6T1wTyr8VKiRs3s+2/W736shTMdtfG0ZIOJOX8VXmFqePM2y/e/Kpz/f1w2K2v+4kCgmlcUYtIV1wbb/rT9Cjo8tvTrrFbJ+accIR4Guh0gy4x7P9k9o9fwCvTtwB7Rcq8oeb3gJCyZJUPaGZtv3OnZc+373aiQLbt4cxwjHAX9XWaVK233nzyp+gD0/CsFrI9sNp6hMeQ77ZK65EJWz/yb1bhy7ipycRYyyU7QcPgsCTVDVh3Paf3jpkOrrqxtY2hbL9YJoi8CRVXi+N2P7rQxfw1tXFSWJ52i0Qa6i9IRyBNpaoJgxtn72AHt/hG8XZvr9L2iPM+GipmTCw/SdX3gS99dXG9qOIBWzfN32PkP/NVzuh6dr+Vz7f02C+qsz2aXtNCNtZov7LTK/75jCYoOuokxrEArbv1YZdwjlsf5d6wua3rzy+15GgqjLb9xr5kCEv0GgjRM3ryAQNVEsOYn7b9/zCJVzC/ggdhH+8vnqSWLyl6sP5bd/76O0SCs+q0kqIev9L5xgKi/zuF2EEXLJpIpRk+0Vt330WRrgCbgXWQijK9ovbvuuICFKh0UiYne1HEfN+FqYDjxCQ3mskNFE6FU7Zft7Pwm4GxQihGy017afhZvuqbJ95PgIHGl2EZvN2ijBt+znrw+xhkFEveQzT2f6BOtvHM0YIXNFo3Ll3mi7yq7J9e8oIoaFUHyGnyK/K9umSEQLXbDp3X4JsP9c0Zes2ZCzKJ6T6bN9mhOC2A417hHsc2z9PRptctm+NEKxGo5nQXKSmafrbfi7bJ3M0B3dW6NznDbP9HK8iqSOwHWolRCDbzzGIeIWgmYVuQk22jxsIVknUTqjL9u0pAhX0d0DYfK7F9u0hmlbBLVxBbL+2PeFZdQjpAx22TwcIvCzVTci1/dQgbmv7tI3OKkOoxfYZ4QAcgXUTot65etuvFqEW2x9Xi1CD7VeLUIftV4yQY/sFd/KbY3RWJUKu7acSxW2mKYs01fFD74FU237lCJXbPlvTVGbVFvwQlJqmhWyfnlUmtwil2PZZbgEuCO+IEPWU2j7LDyuS42/Es/1kJy3c9vGkKnWaiJTaPp5VpNYWlVLbJ/Vq1Evjgth+F/jQZI5aVXsP1dq+NUIG2D53RgiyfeC3fdxC4M/4OyRUZ/vmwkAGuIyxO0J1tu99PwQvanZICLH9LsT27SEjlHbllUHYfCFxjG736t5P8kHEDUYI3Hu5W0KJ7XdPPr08Onoo36Dh7cUwoIfrmT+8J9RbKglFRf6wd+hSbvvOyCUEbdRnsr+7KdRHRCEhOr2bNYib3iG57WNvTxQ0mNrfiR/9plLCLNvvnmx6h6S273YhIuhO/U0jUZaOlRLybd/tLo30Dsls3z0iA4G3eSPzz78X6k9UKSHX9mt+897Ry6B3SGL77kZvd48wePflB+8KBD2RDpxyc2z/abR5zwupYtsP9giXuM9brESRv/P68Na11116EvCxGfulyDFM97whlxC4qlHXrQ4ljNp+5809tzXD6y71Q2rfnbGXIttf79UHpvn0i18JFZw4ID35A34yasT2nzwNemvCCRr2Q38peBNx2G8B3EMri6U3oadGgAk3th/0Dl098W0/0g/dFdi+MwoJYd8ugH4oPfkDThjafrR36CLaD+21Y2b+3/4Zgwj+athffCjU34Cnt2xB6Nm+39wW9g51Hif7oTNt356uCWEboVmkgZzAQ+qigz9aLXikYer1D57Gm9sObif7oTNt3495fg8paAfmzt0CuW1Dfvfluneo8+bwOtkPnWX7xNgQTkvoA4bJvI4177n90IeRNY0o2w/OUvIJQQs38wbonCi1hL1vX/ndpf6axpux14l+6Iwif3DJXtCPD+lFtb/7nVBqs6c14j/XfGE/9JNEfbjP/9wWnDMUEEKmKdQt/vELoT7fIpa6Cmx/3Q/9uhMv8vdrj7hnIYYHfgWEkGkKzJ4kbrGVH7rybT9c03gzNrqlr/9swQ804VwKzzYBRFMWaX4rUvAeqnR8T6d3O+s1TTBf14PY/+xB1jHnxIgTQuq0N94RZU/v6iKkD1L90EGRv39+P/MY9/WMCwmzjriOE+7eLVzCf12HL2Ak22d8bEmaPfPWB1+vT1GS9+SXRYhOb6X7oe+y1ZopSCs2516vCevSWFMaIf3+MtUP3ckKMIHI+hqBzblm0lhTGiFqfp8o8ncunkvuUcDrn7chlJbcyiNEvViRv3P70amkjBg5hzZybqLk6MsyCaPZfufgvCetdUcOLo8QytY1ZRJusv1OH8k/V0QPMI0QSo6gLZUwzPY7d3/sAZbQTuRanegJrZItbqUSetk+CzCnkEzWjl5wFSWUbMsArmn0ELJsv3P7hSzABIpdcxE7Czr71gCf8G2h/h6cI7w6FmqS754lc3HeBO6hiQ1hnFCydJNcFRS+H9gSKu9FUqIVTFzOPJMQVs2ouuLHeSfP1d+/i6zSckYiwsb+IyaO1U/dbwH95F1ZUbslJsy4j2x/RJJ3k6XumYGd3VZZpe9DShECkv0qK32nVfo2pL0ONjhdD+Tc2bXHwcY00zgcQvA2sOrJ4qyJeXfnTfZ1nnKvseTef7in85R/FSn3N+G72yslh3sFOf8e0r267ThUxq3HGXfJnu1fkmG3+SiZt+ju26tIccYF61mEx/sWT3lGISQ0Vvu1BOdesiom3K9rnQXXx2cTGsv9iTY29yZgKeH+GD+lGVFGRjiSfcmoiKiVdXO8jNCYk71ATF09CicEXJFUATniu8TEhPvgGVZDjCAhrD6ik2mEQMKqI1oyQDlhtRGlIwghrDKifARBhAyxoqbhSIIMmNCoV9IXqcQmtiE05rh6iDQzX8pDaIzGVSv221S0VNuekGUa1Uqm8Fiw2M5HaAyrFFJJdj6Yn9CYWVV5GSnEJXIQGnNajZfRlm1oyU1oGIMq1FFJG/oK5iA0GqWbP3X4hV9VhMbxuNzqDUbbzNA8hIYxLXEYTYv3dUk1oTFflDWMmG47gPkIDWNSim9QS9LSopDQOF5ahW53z8NHxtyPZ5oIWUZl7naqYju5T0Y3IZuqzu7833amW3mgGkKjNcy9k3I7UWcwkj+OBkL2Op7tgJFay3wvoApCl1HzXLWdQSG+woQsNx4SfQUATIryKSBk7+PE1lLHoQRPC7x/CgmZVktL9UDa1jivP8SlhpC9kFNM1L2RNiHDwtMzkCpCpvqZGkiGNwDVCWFSSMi0YpCFpiu1CR6scrs7T2oJmerTsYNzfTw2beyMhzmyB7GUEzKNVsMF2W4sKSYEnc0UhM6UdBC6Gq0mS9shbDTFSYhJbUwsspyudNC50kXoaVRvDNsLbLEBxbZNw3uH2S+obWM2bBZetIeNui44T1oJfbVG9dVsMh0Olu2xr/ZyMJxOZqv6SGlM4ev/BHx7wA/IpCQAAAAASUVORK5CYII=" alt="Person 3" />
+															</div>
+															<h3>Library</h3>
+															<p></p>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMzHaAIzJcD4D5PQBRoAwvqhCnbSUNO3Np8l9vOK1KrJqMFzy" alt="Traditions" />
+															</div>
+															<h3>Hindu Culture & Traditions</h3>
+															<p></p>
+														</div>
+													</div>
+												</div>
+												<div class="inner">
+													<div class="flex flex-4">
+														<div class="box person">
+															<div class="image round">
+																<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYSt7dNj8Z0dnAjdf6KvTinLiGojAiG_WzWGC19K69YAiT0pkM" alt="Youth Group" />
+															</div>
+															<h3>Hindu Temple Youth Group</h3>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DUQTjI0nTk0nAidvPmuHfgMYaPKSJOQHSOa8A9LcpvkaOQtU" alt="Auditorium" />
+															</div>
+															<h3>Auditorium</h3>
+															<p></p>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="data:image/jpeg;base64,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" alt="Kitchen Facilties" />
+															</div>
+															<h3>Kitchen & Prasadam Facilities</h3>
+															<p></p>
+														</div>
+														<div class="box person">
+															<div class="image round">
+																<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFL3253r0G_jDIudo3doNajkcwTHTeGLGx33vfXQBt82MFGJi-" alt="Parking" />
+															</div>
+															<h3>Parking Facilities</h3>
+															<p></p>
+														</div>
+													</div>
+												</div>
+											</section>
+											<!-- Three -->
+											<section id="three" class="wrapper special">
+												<div class="inner">
+													<header class="align-center">
+														<h2>Education and Cultural Center Progress</h2>
+														<p>Aliquam erat volutpat nam dui </p>
+													</header>
+													<div class="flex flex-2">
+														<article>
+															<div class="image fit">
+																<img src="http://www.hindutemplestlouis.org/wp-content/uploads/2017/09/HinduTempleCommunityCenterRendering.jpg" alt="Cultural Center" />
+															</div>
+															<header>
+																<h3></h3>
+															</header>
+															<p align="justify">The Hindu Temple of St. Louis has provided our community with a location and resource dedicated to the enrichment of families for over 20 years. In light of this, we propose to build a Community Center which, with your support, will fulfill the needs of our current and future generations.With a population of 16,000 (and growing) Indian families in St. Louis, this new development would be a significant milestone for our future generations.</p>
+														</article>
+														<article>
+															<div class="image fit">
+																<img src="images/community_center1.jpg" alt="Pic 02" />
+															</div>
+															<header>
+																<h3></h3>
+															</header>
+															<p> Progress of our Cultural center </p>
+														</article>
+													</div>
+												</div>
+											</section>
+											<!-- Footer -->
+											<footer id="footer">
+												<div class="inner">
+													<div>
+														<a>
+                                                            725 Weidman Rd, St. Louis, MO - 63011. Phone: 636 230 3300 Email: contact@hindutemplestlouis.org
+														</a>
+													</div>
+													<!--ul class="icons"><li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li><li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li><li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li><li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li><li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li></ul -->
+												</div>
+											</div>
+										</footer>
+										<!-- Scripts -->
+										<script src="assets/js/jquery.min.js"></script>
+										<script src="assets/js/skel.min.js"></script>
+										<script src="assets/js/util.js"></script>
+										<script src="assets/js/main.js"></script>
+										<link rel="stylesheet" href="assets/css/main.css" />
+									</body>
+								</html>

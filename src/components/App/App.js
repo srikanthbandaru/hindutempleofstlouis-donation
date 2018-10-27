@@ -6,12 +6,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className="container">
-				<img
+				{/* <img
 					src={templeText}
 					className="img-fluid mx-auto my-3 d-block"
 					alt="the hindu temple of saint louis"
 					width="274"
-				/>
+				/> */}
 				<Donate />
 			</div>
 		);
