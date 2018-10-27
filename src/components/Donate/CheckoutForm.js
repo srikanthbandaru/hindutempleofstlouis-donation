@@ -68,10 +68,10 @@ class CheckoutForm extends React.Component {
 		const { donationChoice } = this.state;
 		const renderDonationChoice = amount => (
 			<li
-				className={`choice-amount ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
+				className={`choice-amount p-0 ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
 				style={{
-					width: `${100 / (donationChoice.length + 1)}%`,
-					minWidth: `${100 / (donationChoice.length + 1)}%`
+					width: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
+					minWidth: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
 				}}
 				onClick={this.handleInputChange}
 			>
@@ -136,14 +136,14 @@ class CheckoutForm extends React.Component {
 					</div>
 					<div className="form-group">
 						<label htmlFor="fullName">Select your amount</label>
-						<ul className="horizontal-chooser">
+						<ul className="horizontal-chooser row">
 							{donationChoice.map(amount => renderDonationChoice(amount))}
 							<li
-								className="choice-amount"
+								className="choice-amount p-0"
 								onClick={this.handleInputChange}
 								style={{
-									width: `${100 / (donationChoice.length + 1)}%`,
-									minWidth: `${100 / (donationChoice.length + 1)}%`
+									width: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
+									minWidth: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
 								}}
 							>
 								<label>

@@ -21,10 +21,10 @@ export default class Donate extends React.Component {
 		return (
 			<StripeProvider apiKey={process.env.REACT_APP_STRIPE_APIKEY}>
 				<div className="row my-5" style={{ color: 'black', fontWeight: '600' }}>
-					<div className="col-md-2 px-3 d-md-none d-lg-block">
+					<div className="col-lg-2 px-3 d-md-none d-lg-block">
 						<img src={templeVector} className="img-fluid temple-logo mx-auto my-3 d-block" alt="logo" />
 					</div>
-					<div className="col-md-4 px-3">
+					<div className="col-lg-4 px-3">
 						<h1 className="font-weight-bold" style={{ fontSize: '2em' }}>
 							Help us do more
 						</h1>
@@ -35,7 +35,7 @@ export default class Donate extends React.Component {
 							traditions and culture to carry forward with new generations.
 						</p>
 					</div>
-					<div className="col-md-6 px-3">
+					<div className="col-lg-6 px-3">
 						<Elements>
 							<CheckoutForm
 								honoreeFieldsClassName={honoreeFieldsClassName}
