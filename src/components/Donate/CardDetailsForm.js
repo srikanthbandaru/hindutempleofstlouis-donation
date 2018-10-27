@@ -34,12 +34,13 @@ class CardDetailsForm extends React.Component {
 				.then(body => {
 					this.setState({
 						donateResponse: body,
+						error: body.error,
 						isLoading: false
 					});
 				})
 				.catch(error => {
 					this.setState({
-						error: 'Something went wrong. Please try again.',
+						error: 'Something is broke. Please try again or contact STLTempleEdu@gmail.com',
 						isLoading: false
 					});
 				});
@@ -107,6 +108,10 @@ class CardDetailsForm extends React.Component {
 				<button type="submit" className="btn btn-success">
 					Donate ${this.props.donateForm.donationAmount}
 				</button>
+				{
+					this.state.error && 
+					<p className="text-danger">{this.state.error}</p>
+				}
 			</form>
 		);
 	}

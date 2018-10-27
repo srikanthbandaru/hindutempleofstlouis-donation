@@ -118,39 +118,44 @@ app.get('/api/donationOptions', async (req, res) => {
 });
 
 app.post('/api/donate', async (req, res) => {
-	const request = JSON.parse(req.body);
-	const customer = await createCustomer(request);
-	let charge, createSubscriptionResponse, createPlanResponse;
-
-	if (request.donationFrequency === 'oneTime') {
-		charge = await createCharge(request, customer);
-	} else if (donationOptions.includes(Number(request.donationAmount))) {
-		// recurring payments - one of suggested amounts
-		const plan = {
-			10: 'plan_DjzM6a0mah4M41',
-			35: 'plan_DjzMMq1zsUpDqo',
-			50: 'plan_DjzN5knl2Vg3qM',
-			100: 'plan_DjzNrTvqAOKGfC',
-			250: 'plan_DjzQTPdkvy79h8'
-		}[Number(request.donationAmount)];
-		createSubscriptionResponse = await createSubscription(customer, plan);
-	} else {
-		// recurring payments - custom amount
-		createPlanResponse = await createPlan(request);
-		createSubscriptionResponse = await createSubscription(customer, createPlanResponse.id);
+	try {
+		const request = JSON.parse(req.body);
+		const customer = await createCustomer(request);
+		let charge, createSubscriptionResponse, createPlanResponse;
+	
+		if (request.donationFrequency === 'oneTime') {
+			charge = await createCharge(request, customer);
+		} else if (donationOptions.includes(Number(request.donationAmount))) {
+			// recurring payments - one of suggested amounts
+			const plan = {
+				50: '50-dollars',
+				75: '75-dollars',
+				100: '100-dollars',
+				150: '150-dollars',
+				250: '250-dollars'
+			}[Number(request.donationAmount)];
+			createSubscriptionResponse = await createSubscription(customer, plan);
+		} else {
+			// recurring payments - custom amount
+			createPlanResponse = await createPlan(request);
+			createSubscriptionResponse = await createSubscription(customer, createPlanResponse.id);
+		}
+	
+		request.customer = customer || {};
+		request.charge = charge || {};
+		request.createSubscriptionResponse = createSubscriptionResponse || {};
+		request.createPlanResponse = createPlanResponse || {};
+	
+		donationRef.push().set(request);
+	
+		// console.log(JSON.parse(req.body));
+	
+		const body = JSON.parse(req.body);
+		res.json(body);
+	} catch {
+		const error = {error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com'};
+		res.status(500).json(error);
 	}
-
-	request.customer = customer || {};
-	request.charge = charge || {};
-	request.createSubscriptionResponse = createSubscriptionResponse || {};
-	request.createPlanResponse = createPlanResponse || {};
-
-	donationRef.push().set(request);
-
-	// console.log(JSON.parse(req.body));
-
-	const body = JSON.parse(req.body);
-	res.json(body);
 });
 
 if (process.env.NODE_ENV === 'production') {
