@@ -68,7 +68,9 @@ class CheckoutForm extends React.Component {
 		const { donationChoice } = this.state;
 		const renderDonationChoice = amount => (
 			<li
-				className={`choice-amount p-0 ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
+				className={`choice-amount p-0 ${
+					Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''
+				}`}
 				style={{
 					width: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
 					minWidth: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
@@ -142,8 +144,10 @@ class CheckoutForm extends React.Component {
 								className="choice-amount p-0"
 								onClick={this.handleInputChange}
 								style={{
-									width: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
-									minWidth: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
+									width: `${100 /
+										(donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
+									minWidth: `${100 /
+										(donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
 								}}
 							>
 								<label>
