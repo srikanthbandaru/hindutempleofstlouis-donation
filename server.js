@@ -16,28 +16,39 @@ var transporter = nodemailer.createTransport({
 	}
 });
 
-const mailOptions = {
-	from: process.env.REACT_APP_NODEMAILER_EMAIL, // sender address
-	to: 'snackysrikanth@gmail.com', // list of receivers
-	subject: 'A donation to the Cultural & Education Center has been made!', // Subject line
+const mailOptions = (honoreeEmailAddress, honoreeName, donatorFullName) => ({
+	from: `Donation | Cultural & Education Center STL <${process.env.REACT_APP_NODEMAILER_EMAIL}>`,
+	to: honoreeEmailAddress,
+	subject: 'Thank you for donating to Cultural & Education Center - STL!',
 	html: `
 			<div>
-				<p>Dear Srikanth Bandaru,</p>
+				<p>Dear ${honoreeName},</p>
 				<p>
-					We want to let you know that Srikanth Bandaru made a donation to the 
+					We want to let you know that ${donatorFullName} made a donation to the 
 					<a href="https://edu.hindutemplestlouis.org/" target="blank">Cultural & Education Center</a> 
 					in your honor.
 				</p>
+				<p>
+					With your donation, our education center can continue to thrive for years. 
+					Thank you for helping us to continue promoting our traditions and culture to carry forward with new generations.
+				</p>
+				<p>
+					The Hindu Temple of St. Louis<br />
+					725 Weidman Road<br />
+					Ballwin, MO - 63021
+				</p>
 			</div>
-		` // plain text body
-};
+		`
+});
 
-//   transporter.sendMail(mailOptions, function (err, info) {
-// 	if(err)
-// 	  console.log(err)
-// 	else
-// 	  console.log(info);
-//  });
+const sendReceipt = (honoreeEmailAddress, honoreeName, donatorFullName) => {
+	transporter.sendMail(mailOptions(honoreeEmailAddress, honoreeName, donatorFullName), function (err, info) {
+		if(err)
+			console.log(err)
+		else
+			console.log(info);
+	});
+}
 
 const serviceAccount = {
 	type: 'service_account',
@@ -147,9 +158,10 @@ app.post('/api/donate', async (req, res) => {
 		request.createPlanResponse = createPlanResponse || {};
 	
 		donationRef.push().set(request);
-	
-		// console.log(JSON.parse(req.body));
-	
+		if (request.honoreeEmail) {
+			sendReceipt(request.honoreeEmail, request.honoreeName, request.fullName);
+		}
+		
 		const body = JSON.parse(req.body);
 		res.json(body);
 	} catch {
