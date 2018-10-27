@@ -160,6 +160,7 @@ class CheckoutForm extends React.Component {
 											name="donationAmount"
 											id="other-amount"
 											value={this.state.donateForm.donationAmount}
+											style={{lineHeight: 1, color: 'black'}}
 										/>
 									</div>
 								</label>
