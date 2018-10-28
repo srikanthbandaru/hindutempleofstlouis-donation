@@ -174,8 +174,8 @@ app.post('/api/donate', async (req, res) => {
 			if (err) console.log(err);
 			else console.log(info);
 		});
-		
-		const error = { error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com' };
+
+		const error = { error: 'Something went wrong. Please try again later.' };
 		res.status(500).json(error);
 	}
 });
