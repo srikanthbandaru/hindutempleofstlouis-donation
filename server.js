@@ -42,13 +42,11 @@ const mailOptions = (honoreeEmailAddress, honoreeName, donatorFullName) => ({
 });
 
 const sendReceipt = (honoreeEmailAddress, honoreeName, donatorFullName) => {
-	transporter.sendMail(mailOptions(honoreeEmailAddress, honoreeName, donatorFullName), function (err, info) {
-		if(err)
-			console.log(err)
-		else
-			console.log(info);
+	transporter.sendMail(mailOptions(honoreeEmailAddress, honoreeName, donatorFullName), function(err, info) {
+		if (err) console.log(err);
+		else console.log(info);
 	});
-}
+};
 
 const serviceAccount = {
 	type: 'service_account',
@@ -133,7 +131,7 @@ app.post('/api/donate', async (req, res) => {
 		const request = JSON.parse(req.body);
 		const customer = await createCustomer(request);
 		let charge, createSubscriptionResponse, createPlanResponse;
-	
+
 		if (request.donationFrequency === 'oneTime') {
 			charge = await createCharge(request, customer);
 		} else if (donationOptions.includes(Number(request.donationAmount))) {
@@ -151,21 +149,21 @@ app.post('/api/donate', async (req, res) => {
 			createPlanResponse = await createPlan(request);
 			createSubscriptionResponse = await createSubscription(customer, createPlanResponse.id);
 		}
-	
+
 		request.customer = customer || {};
 		request.charge = charge || {};
 		request.createSubscriptionResponse = createSubscriptionResponse || {};
 		request.createPlanResponse = createPlanResponse || {};
-	
+
 		donationRef.push().set(request);
 		if (request.honoreeEmail) {
 			sendReceipt(request.honoreeEmail, request.honoreeName, request.fullName);
 		}
-		
+
 		const body = JSON.parse(req.body);
 		res.json(body);
-	} catch(err) {
-		const error = {error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com'};
+	} catch (err) {
+		const error = { error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com' };
 		res.status(500).json(error);
 	}
 });
