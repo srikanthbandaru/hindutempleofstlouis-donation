@@ -163,6 +163,18 @@ app.post('/api/donate', async (req, res) => {
 		const body = JSON.parse(req.body);
 		res.json(body);
 	} catch (err) {
+		const mailOptions = {
+			from: `Donation | Cultural & Education Center STL <${process.env.REACT_APP_NODEMAILER_EMAIL}>`,
+			to: process.env.REACT_APP_NODEMAILER_EMAIL,
+			subject: 'Error report',
+			html: `${err}`
+		};
+
+		transporter.sendMail(mailOptions, function(err, info) {
+			if (err) console.log(err);
+			else console.log(info);
+		});
+		
 		const error = { error: 'Something went wrong. Please try again later or contact STLTempleEdu@gmail.com' };
 		res.status(500).json(error);
 	}
