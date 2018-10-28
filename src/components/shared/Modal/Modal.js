@@ -18,8 +18,9 @@ export default function Modal(props) {
 										class="close"
 										data-dismiss="modal"
 										aria-label="Close"
+										style={{fontSize: '1em', width: '100px'}}
 									>
-										<span aria-hidden="true">×</span>
+										close
 									</button>
 								</div>
 								<div class="text-center">
@@ -30,7 +31,7 @@ export default function Modal(props) {
 										<div class="Header-logoImage" alt="Logo" />
 									</div>
 								</div>
-								<h4 class="title text-center" style={{ fontSize: '1.5em' }}>
+								<h4 class="title text-center m-0" style={{ fontSize: '1.5em' }}>
 									The Hindu Temple of Saint Louis
 								</h4>
 								<h5 class="sub-title text-center">{props.subTitle}</h5>
@@ -38,7 +39,7 @@ export default function Modal(props) {
 							</header>
 						</div>
 						<div class="modal-body text-center">{props.modalBody}</div>
-						<div class="modal-footer">{props.modalFooter}</div>
+						{/* <div class="modal-footer">{props.modalFooter}</div> */}
 					</div>
 				</div>
 			</div>
