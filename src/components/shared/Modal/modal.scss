@@ -36,10 +36,9 @@ header {
 }
 .modal-header .close {
 	padding: 1rem;
-	margin: 0rem -1rem -1rem auto;
+	margin: 0rem -1.5rem -1rem auto;
 	font-size: 1em;
     width: 100px;
-    /* display: flex; */
     position: fixed;
 	right: 0;
 	&:hover {

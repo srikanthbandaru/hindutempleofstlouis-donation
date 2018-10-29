@@ -20,7 +20,7 @@ export default function Modal(props) {
 										aria-label="Close"
 										style={{fontSize: '1em', width: '100px'}}
 									>
-										close
+										X
 									</button>
 								</div>
 								<div class="text-center">
