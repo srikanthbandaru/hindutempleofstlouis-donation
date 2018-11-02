@@ -3,10 +3,12 @@ import { injectStripe } from 'react-stripe-elements';
 
 import Modal from '../shared/Modal';
 import CardDetailsForm from './CardDetailsForm';
+import PledgeForm from './PledgeForm';
 
 class CheckoutForm extends React.Component {
 	state = {
 		shouldShowStripeCheckoutModal: false,
+		shouldShowPledgeForm: false,
 		donateForm: {
 			donationFrequency: 'monthly',
 			donationAmount: 50,
@@ -46,6 +48,13 @@ class CheckoutForm extends React.Component {
 			});
 		}
 	};
+
+	togglePledgeForm = event => {
+		event.preventDefault();
+		this.setState({
+			shouldShowPledgeForm: !this.state.shouldShowPledgeForm
+		});
+	}
 
 	handleInputChange = event => {
 		const { donateForm } = this.state;
@@ -103,6 +112,18 @@ class CheckoutForm extends React.Component {
 						}
 						subTitle="Donation"
 						handleClose={this.toggleStripeCheckoutModal}
+					/>
+				)}
+				{this.state.shouldShowPledgeForm && (
+					<Modal
+						modalBody={
+							<PledgeForm
+								donateForm={this.state.donateForm}
+								handleInputChange={this.handleInputChange}
+							/>
+						}
+						subTitle="Pledge Form"
+						handleClose={this.togglePledgeForm}
 					/>
 				)}
 
@@ -208,8 +229,11 @@ class CheckoutForm extends React.Component {
 						</div>
 					</div>
 					<div className="donate-button-group">
-						<button className="btn btn-primary donate-using-cc" onClick={this.toggleStripeCheckoutModal}>
+						{/* <button className="btn btn-primary donate-using-cc" onClick={this.toggleStripeCheckoutModal}>
 							Use credit card
+						</button> */}
+						<button className="btn btn-primary donate-using-cc" onClick={this.togglePledgeForm}>
+							Donate Later
 						</button>
 						<form
 							className="btn p-0"
