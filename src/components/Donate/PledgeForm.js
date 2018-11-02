@@ -81,7 +81,7 @@ class PledgeForm extends React.Component {
 				{this.state.error && <p className="text-danger">{this.state.error}</p>}
 				<br />
 				<button type="submit" className="btn btn-success">
-					Pledge ${this.props.donateForm.donationAmount} {this.props.donateForm.donationFrequency}
+					Pledge ${this.props.donateForm.donationAmount} {this.props.donateForm.donationFrequency === 'monthly' ? 'monthly for 36 months' : 'one time'}
 				</button>
 			</form>
 		);
