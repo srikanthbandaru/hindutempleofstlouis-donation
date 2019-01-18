@@ -107,7 +107,7 @@ class CardDetailsForm extends React.Component {
 
 				{this.state.error && <p className="text-danger">{this.state.error}</p>}
 				<button type="submit" className="btn btn-success">
-					Donate ${this.props.donateForm.donationAmount}
+					Donate ${this.props.donateForm.donationAmount} {{monthly: 'monthly', oneTime: 'one time'}[this.props.donateForm.donationFrequency]}
 				</button>
 			</form>
 		);
