@@ -9,23 +9,25 @@
 		"firebase": "^5.5.2",
 		"firebase-admin": "^6.0.0",
 		"node-sass": "^4.9.3",
+		"nodemailer": "^4.6.8",
 		"prettier": "^1.14.3",
 		"react": "^16.5.2",
 		"react-dom": "^16.5.2",
-		"react-scripts": "2.0.1",
+		"react-loading": "^2.0.3",
+		"react-scripts": "^2.0.5",
 		"react-stripe-elements": "^2.0.1",
 		"stripe": "^6.12.1"
 	},
 	"scripts": {
 		"start": "node server.js",
-		"heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+		"heroku-postbuild": "npm run build",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"format": "prettier --write **/*.{js,json,md,scss,css} !build/** --config .prettierrc",
 		"eject": "react-scripts eject",
 		"client": "react-scripts start",
 		"server": "nodemon server.js",
-		"dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
 	},
 	"proxy": "http://localhost:8000/",
 	"eslintConfig": {

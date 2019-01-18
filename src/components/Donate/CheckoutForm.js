@@ -3,20 +3,42 @@ import { injectStripe } from 'react-stripe-elements';
 
 import Modal from '../shared/Modal';
 import CardDetailsForm from './CardDetailsForm';
+import PledgeForm from './PledgeForm';
 
 class CheckoutForm extends React.Component {
 	state = {
 		shouldShowStripeCheckoutModal: false,
+		shouldShowPledgeForm: false,
 		donateForm: {
 			donationFrequency: 'monthly',
-			donationAmount: 10,
+			donationAmount: 50,
 			fullName: '',
 			honoreeName: '',
 			honoreeEmail: '',
 			email: '',
 			phone: ''
-		}
+		},
+		donationChoice: []
 	};
+
+	componentDidMount() {
+		fetch('/api/donationOptions', {
+			method: 'get',
+			contentType: 'application/json'
+		})
+			.then(response => response.json())
+			.then(donationOptions => {
+				this.setState({
+					donationChoice: donationOptions
+				});
+			})
+			.catch(error => {
+				this.setState({
+					error: 'Something went wrong. Please try again.',
+					isLoading: false
+				});
+			});
+	}
 
 	toggleStripeCheckoutModal = event => {
 		event.preventDefault();
@@ -26,6 +48,13 @@ class CheckoutForm extends React.Component {
 			});
 		}
 	};
+
+	togglePledgeForm = event => {
+		event.preventDefault();
+		this.setState({
+			shouldShowPledgeForm: !this.state.shouldShowPledgeForm
+		});
+	}
 
 	handleInputChange = event => {
 		const { donateForm } = this.state;
@@ -45,13 +74,15 @@ class CheckoutForm extends React.Component {
 	};
 
 	render() {
-		const donationChoice = [10, 35, 50, 100, 250];
+		const { donationChoice } = this.state;
 		const renderDonationChoice = amount => (
 			<li
-				className={`choice-amount ${Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''}`}
+				className={`choice-amount p-0 ${
+					Number(this.state.donateForm.donationAmount) === amount ? 'selected' : ''
+				}`}
 				style={{
-					width: `${100 / (donationChoice.length + 1)}%`,
-					minWidth: `${100 / (donationChoice.length + 1)}%`
+					width: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
+					minWidth: `${100 / (donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
 				}}
 				onClick={this.handleInputChange}
 			>
@@ -81,6 +112,18 @@ class CheckoutForm extends React.Component {
 						}
 						subTitle="Donation"
 						handleClose={this.toggleStripeCheckoutModal}
+					/>
+				)}
+				{this.state.shouldShowPledgeForm && (
+					<Modal
+						modalBody={
+							<PledgeForm
+								donateForm={this.state.donateForm}
+								handleInputChange={this.handleInputChange}
+							/>
+						}
+						subTitle="Pledge Form"
+						handleClose={this.togglePledgeForm}
 					/>
 				)}
 
@@ -116,14 +159,16 @@ class CheckoutForm extends React.Component {
 					</div>
 					<div className="form-group">
 						<label htmlFor="fullName">Select your amount</label>
-						<ul className="horizontal-chooser">
+						<ul className="horizontal-chooser row">
 							{donationChoice.map(amount => renderDonationChoice(amount))}
 							<li
-								className="choice-amount"
+								className="choice-amount p-0"
 								onClick={this.handleInputChange}
 								style={{
-									width: `${100 / (donationChoice.length + 1)}%`,
-									minWidth: `${100 / (donationChoice.length + 1)}%`
+									width: `${100 /
+										(donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`,
+									minWidth: `${100 /
+										(donationChoice.length + 1 - ((window.innerWidth < 736 && 3) || 0))}%`
 								}}
 							>
 								<label>
@@ -136,6 +181,7 @@ class CheckoutForm extends React.Component {
 											name="donationAmount"
 											id="other-amount"
 											value={this.state.donateForm.donationAmount}
+											style={{ lineHeight: 1, color: 'black' }}
 										/>
 									</div>
 								</label>
@@ -186,7 +232,19 @@ class CheckoutForm extends React.Component {
 						<button className="btn btn-primary donate-using-cc" onClick={this.toggleStripeCheckoutModal}>
 							Use credit card
 						</button>
-						<button className="btn btn-primary">Use Paypal</button>
+						{/* <button className="btn btn-primary donate-using-cc" onClick={this.togglePledgeForm}>
+							Donate Later
+						</button> */}
+						<form
+							className="btn p-0"
+							action="https://www.paypal.com/cgi-bin/webscr"
+							method="post"
+							target="_top"
+						>
+							<input type="hidden" name="cmd" value="_s-xclick" />
+							<input type="hidden" name="hosted_button_id" value="NCJ8XSP6FBEGU" />
+							<button className="btn btn-primary w-100">Use Paypal</button>
+						</form>
 					</div>
 				</form>
 			</React.Fragment>

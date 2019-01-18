@@ -1,15 +1,14 @@
 import React from 'react';
-import { CardElement } from 'react-stripe-elements';
 import ReactLoading from 'react-loading';
 
 import { donationRef } from '../../config/firebase';
 
-class CardDetailsForm extends React.Component {
+class PledgeForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isLoading: false,
-			donateResponse: {},
+			isSuccessfullySaved: false,
 			error: ''
 		};
 	}
@@ -19,46 +18,25 @@ class CardDetailsForm extends React.Component {
 		this.setState({
 			isLoading: true
 		});
-
 		const { donateForm } = this.props;
+		donateForm.isPledged = true;
 
-		this.props.stripe.createToken({ name: donateForm.fullName }).then(({ token }) => {
-			donateForm.token = token;
-
-			fetch('/api/donate', {
-				method: 'post',
-				contentType: 'application/json',
-				body: JSON.stringify(donateForm)
-			})
-				.then(response => response.json())
-				.then(body => {
-					this.setState({
-						donateResponse: body,
-						error: body.error,
-						isLoading: false
-					});
-				})
-				.catch(error => {
-					this.setState({
-						error: 'Something went wrong. Please try again later.',
-						isLoading: false
-					});
-				});
-
-			// console.log('donateResponse', donateResponse);
+		donationRef.push().set(donateForm);
+		this.setState({
+			isSuccessfullySaved: true
 		});
 	};
 
 	render() {
-		const { donateResponse } = this.state;
+		const { isSuccessfullySaved } = this.state;
 
-		if (donateResponse && donateResponse.token) {
+		if (isSuccessfullySaved) {
 			return (
 				<div className="donation-success">
 					<p className="thank-you">Thank you!</p>
 					<p>
-						Your {donateResponse.donationFrequency} donation of ${donateResponse.donationAmount} has been
-						succesfully processed.
+						Your pledge for {this.props.donateForm.donationFrequency} donation of ${this.props.donateForm.donationAmount} has been
+						succesfully saved.
 					</p>
 				</div>
 			);
@@ -100,18 +78,14 @@ class CardDetailsForm extends React.Component {
 						/>
 					</div>
 				</div>
-
-				<br />
-				<CardElement />
-				<br />
-
 				{this.state.error && <p className="text-danger">{this.state.error}</p>}
+				<br />
 				<button type="submit" className="btn btn-success">
-					Donate ${this.props.donateForm.donationAmount} {{monthly: 'monthly', oneTime: 'one time'}[this.props.donateForm.donationFrequency]}
+					Pledge ${this.props.donateForm.donationAmount} {this.props.donateForm.donationFrequency === 'monthly' ? 'monthly for 36 months' : 'one time'}
 				</button>
 			</form>
 		);
 	}
 }
 
-export default CardDetailsForm;
+export default PledgeForm;
