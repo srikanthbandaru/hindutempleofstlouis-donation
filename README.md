@@ -28,10 +28,10 @@ API's: stripe,
 			1. "
 			2. "
 			3. "
-			4. '
+			4. "
 		reccuring donation
-			1. '
-			2. '
+			1. "
+			2. "
 			3. create a new plan based on the new amount with a unique ID everytime. 
 			4. Link the customer to this plan to create a subscribtion
 			5. Store all this data in firebase
