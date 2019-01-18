@@ -229,12 +229,12 @@ class CheckoutForm extends React.Component {
 						</div>
 					</div>
 					<div className="donate-button-group">
-						{/* <button className="btn btn-primary donate-using-cc" onClick={this.toggleStripeCheckoutModal}>
+						<button className="btn btn-primary donate-using-cc" onClick={this.toggleStripeCheckoutModal}>
 							Use credit card
-						</button> */}
-						<button className="btn btn-primary donate-using-cc" onClick={this.togglePledgeForm}>
-							Donate Later
 						</button>
+						{/* <button className="btn btn-primary donate-using-cc" onClick={this.togglePledgeForm}>
+							Donate Later
+						</button> */}
 						<form
 							className="btn p-0"
 							action="https://www.paypal.com/cgi-bin/webscr"
